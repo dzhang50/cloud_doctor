@@ -18,6 +18,8 @@
 
 //@property (strong, nonatomic) SKRecognizer* voiceSearch;
 
+@property (nonatomic, readwrite, strong) CPTXYGraph *ecgGraph;
+
 @property (nonatomic, strong) BLE *bleShield;
 @property CWStatusBarNotification *statusBarNotification;
 
@@ -46,6 +48,8 @@
                                    selector:@selector(simulateFakeAlert)
                                    userInfo:nil
                                     repeats:NO];
+    
+    [self setUpECGGraph];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -114,6 +118,76 @@
     NSLog(@"simulating fake alert");
     self.inAlertMode = YES;
     [self setAlertMode];
+}
+
+#pragma mark - CorePlot
+
+- (void)setUpECGGraph
+{
+    if (!self.ecgGraph) {
+        CPTXYGraph *newGraph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
+        CPTTheme *theme      = [CPTTheme themeNamed:kCPTDarkGradientTheme];
+        [newGraph applyTheme:theme];
+        self.ecgGraph = newGraph;
+        
+        newGraph.paddingTop    = 30.0;
+        newGraph.paddingBottom = 30.0;
+        newGraph.paddingLeft   = 50.0;
+        newGraph.paddingRight  = 50.0;
+        
+        CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] initWithFrame:newGraph.bounds];
+        dataSourceLinePlot.identifier = @"Data Source Plot";
+        
+        CPTMutableLineStyle *lineStyle = [dataSourceLinePlot.dataLineStyle mutableCopy];
+        lineStyle.lineWidth              = 1.0;
+        lineStyle.lineColor              = [CPTColor redColor];
+        dataSourceLinePlot.dataLineStyle = lineStyle;
+        
+        dataSourceLinePlot.dataSource = self;
+        [newGraph addPlot:dataSourceLinePlot];
+    }
+    
+    CPTXYGraph *theGraph = self.ecgGraph;
+    self.ecgGraphHostingView.hostedGraph = theGraph;
+    
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)theGraph.defaultPlotSpace;
+    
+    NSDecimalNumber *high   = [NSDecimalNumber numberWithInt:100];
+    NSDecimalNumber *low    = [NSDecimalNumber numberWithInt:0];
+    NSDecimalNumber *length = [high decimalNumberBySubtracting:low];
+    
+    //NSLog(@"high = %@, low = %@, length = %@", high, low, length);
+    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(0.0) length:CPTDecimalFromUnsignedInteger(10)];
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:low.decimalValue length:length.decimalValue];
+    // Axes
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)theGraph.axisSet;
+    
+    CPTXYAxis *x = axisSet.xAxis;
+    x.majorIntervalLength         = CPTDecimalFromDouble(10.0);
+    x.orthogonalCoordinateDecimal = CPTDecimalFromInteger(0);
+    x.minorTicksPerInterval       = 1;
+    
+    CPTXYAxis *y  = axisSet.yAxis;
+    NSDecimal six = CPTDecimalFromInteger(6);
+    y.majorIntervalLength         = CPTDecimalDivide([length decimalValue], six);
+    y.majorTickLineStyle          = nil;
+    y.minorTicksPerInterval       = 4;
+    y.minorTickLineStyle          = nil;
+    y.orthogonalCoordinateDecimal = CPTDecimalFromInteger(0);
+    y.alternatingBandFills        = @[[[CPTColor whiteColor] colorWithAlphaComponent:CPTFloat(0.1)], [NSNull null]];
+    
+    [theGraph reloadData];
+}
+
+-(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
+{
+    return 10;
+}
+
+
+-(id)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
+{
+    return @25;
 }
 
 #pragma mark - BLEDelegate

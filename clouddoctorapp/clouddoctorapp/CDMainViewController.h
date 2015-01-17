@@ -10,6 +10,8 @@
 #import "BLE.h"
 #import "PulsingHaloLayer.h"
 
+#import "CorePlot-CocoaTouch.h"
+
 //#import <SpeechKit/SpeechKit.h>
 
 @import CoreBluetooth;
@@ -17,7 +19,7 @@
 
 #import "CWStatusBarNotification.h"
 
-@interface CDMainViewController : UIViewController <BLEDelegate>
+@interface CDMainViewController : UIViewController <BLEDelegate, CPTPlotDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
@@ -31,6 +33,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *microphoneImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *uploadImageView;
+
+@property (weak, nonatomic) IBOutlet CPTGraphHostingView *ecgGraphHostingView;
 
 @property (nonatomic, weak) PulsingHaloLayer *halo;
 
