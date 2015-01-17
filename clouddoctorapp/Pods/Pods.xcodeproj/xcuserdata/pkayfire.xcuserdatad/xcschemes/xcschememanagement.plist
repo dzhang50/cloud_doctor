@@ -9,7 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-clouddoctorapp-Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-clouddoctorapp-CWStatusBarNotification.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-clouddoctorapp-Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0CD07906D374B049FFC5C290</key>
+		<key>4942AAA07B3186BF355CD6F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>990FBBCAB113BB65F087E0BD</key>
+		<key>50806125FB521AFBC382ABA9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CD45CE4518A26E6690291B6B</key>
+		<key>8B0C39D07281ACC52008BE9E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FEEA58FF6342EE256DB15CB5</key>
+		<key>AA879347DDF8F8D8A654F30D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE6325B5C897EF539F1ECDED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F06D5829E3448ABBB4945BE7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

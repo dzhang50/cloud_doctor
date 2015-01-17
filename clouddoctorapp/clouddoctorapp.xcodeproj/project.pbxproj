@@ -18,6 +18,8 @@
 		66EDE7411A6A2988001519FF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE7401A6A2988001519FF /* CoreGraphics.framework */; };
 		66EDE7431A6A298E001519FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE7421A6A298E001519FF /* Foundation.framework */; };
 		66EDE7451A6A299C001519FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE7441A6A299C001519FF /* UIKit.framework */; };
+		66EDE7481A6A3625001519FF /* CDMainViewController+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE7471A6A3625001519FF /* CDMainViewController+Animations.m */; };
+		66EDE74B1A6A36CC001519FF /* SensorOperationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE74A1A6A36CC001519FF /* SensorOperationController.m */; };
 		A227E8B14577ECDB9FAF0E80 /* libPods-clouddoctorapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A119943669CF35F3E18000 /* libPods-clouddoctorapp.a */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,10 @@
 		66EDE7401A6A2988001519FF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		66EDE7421A6A298E001519FF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		66EDE7441A6A299C001519FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		66EDE7461A6A3625001519FF /* CDMainViewController+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDMainViewController+Animations.h"; sourceTree = "<group>"; };
+		66EDE7471A6A3625001519FF /* CDMainViewController+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDMainViewController+Animations.m"; sourceTree = "<group>"; };
+		66EDE7491A6A36CC001519FF /* SensorOperationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorOperationController.h; sourceTree = "<group>"; };
+		66EDE74A1A6A36CC001519FF /* SensorOperationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorOperationController.m; sourceTree = "<group>"; };
 		8DABAFEBEEA633B1DB6A5725 /* Pods-clouddoctorapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.release.xcconfig"; sourceTree = "<group>"; };
 		CB57A61504F2989588D77FB5 /* Pods-clouddoctorapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,8 +126,6 @@
 				66EDE7381A69F503001519FF /* ViewControllers */,
 				6623FCF01A6959E7009FBB8E /* AppDelegate.h */,
 				6623FCF11A6959E7009FBB8E /* AppDelegate.m */,
-				6623FCF31A6959E7009FBB8E /* CDMainViewController.h */,
-				6623FCF41A6959E7009FBB8E /* CDMainViewController.m */,
 				6623FCF61A6959E7009FBB8E /* Main.storyboard */,
 				6623FCF91A6959E7009FBB8E /* Images.xcassets */,
 				6623FCEC1A6959E7009FBB8E /* Supporting Files */,
@@ -158,6 +162,10 @@
 		66EDE7381A69F503001519FF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6623FCF31A6959E7009FBB8E /* CDMainViewController.h */,
+				6623FCF41A6959E7009FBB8E /* CDMainViewController.m */,
+				66EDE7461A6A3625001519FF /* CDMainViewController+Animations.h */,
+				66EDE7471A6A3625001519FF /* CDMainViewController+Animations.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -179,6 +187,8 @@
 		66EDE73F1A69FBED001519FF /* OperationControllers */ = {
 			isa = PBXGroup;
 			children = (
+				66EDE7491A6A36CC001519FF /* SensorOperationController.h */,
+				66EDE74A1A6A36CC001519FF /* SensorOperationController.m */,
 			);
 			name = OperationControllers;
 			sourceTree = "<group>";
@@ -330,6 +340,8 @@
 				6623FCF51A6959E7009FBB8E /* CDMainViewController.m in Sources */,
 				6623FCF21A6959E7009FBB8E /* AppDelegate.m in Sources */,
 				6623FCEF1A6959E7009FBB8E /* main.m in Sources */,
+				66EDE74B1A6A36CC001519FF /* SensorOperationController.m in Sources */,
+				66EDE7481A6A3625001519FF /* CDMainViewController+Animations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
