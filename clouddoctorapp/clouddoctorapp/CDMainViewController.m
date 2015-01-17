@@ -92,7 +92,7 @@
     self.statusBarNotification.notificationLabelTextColor = self.CDRed;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.statusBarNotification displayNotificationWithMessage:@"Cloud Doctor is at your service!" forDuration:3.0f];
+        [self.statusBarNotification displayNotificationWithMessage:@"💉 Cloud Doctor is at your service! 💊" forDuration:3.0f];
     });
 }
 
@@ -111,6 +111,8 @@
     [self updateLabel:self.ecgLabel WithText:[NSString stringWithFormat:@"%d.5", rand() % (0 - 100) + 0]];
     [self updateLabel:self.oxygenLabel WithText:[NSString stringWithFormat:@"%d%%", rand() % (0 - 100) + 0]];
     [self updateLabel:self.carbonDioxideLabel WithText:[NSString stringWithFormat:@"%d%%", rand() % (0 - 100) + 0]];
+    
+    [self.ecgGraph reloadData];
 }
 
 - (void)simulateFakeAlert
@@ -126,21 +128,21 @@
 {
     if (!self.ecgGraph) {
         CPTXYGraph *newGraph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
-        CPTTheme *theme      = [CPTTheme themeNamed:kCPTDarkGradientTheme];
-        [newGraph applyTheme:theme];
+        //CPTTheme *theme      = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
+        //[newGraph applyTheme:theme];
         self.ecgGraph = newGraph;
+        self.ecgGraph.axisSet = nil;
         
-        newGraph.paddingTop    = 30.0;
-        newGraph.paddingBottom = 30.0;
-        newGraph.paddingLeft   = 50.0;
-        newGraph.paddingRight  = 50.0;
+        newGraph.paddingTop    = 0.0;
+        newGraph.paddingBottom = 0.0;
+        newGraph.paddingLeft   = 0.0;
+        newGraph.paddingRight  = 0.0;
         
         CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] initWithFrame:newGraph.bounds];
-        dataSourceLinePlot.identifier = @"Data Source Plot";
         
         CPTMutableLineStyle *lineStyle = [dataSourceLinePlot.dataLineStyle mutableCopy];
         lineStyle.lineWidth              = 1.0;
-        lineStyle.lineColor              = [CPTColor redColor];
+        lineStyle.lineColor              = [CPTColor colorWithCGColor:self.CDRed.CGColor];
         dataSourceLinePlot.dataLineStyle = lineStyle;
         
         dataSourceLinePlot.dataSource = self;
@@ -156,25 +158,9 @@
     NSDecimalNumber *low    = [NSDecimalNumber numberWithInt:0];
     NSDecimalNumber *length = [high decimalNumberBySubtracting:low];
     
-    //NSLog(@"high = %@, low = %@, length = %@", high, low, length);
+    NSLog(@"high = %@, low = %@, length = %@", high, low, length);
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(0.0) length:CPTDecimalFromUnsignedInteger(10)];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:low.decimalValue length:length.decimalValue];
-    // Axes
-    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)theGraph.axisSet;
-    
-    CPTXYAxis *x = axisSet.xAxis;
-    x.majorIntervalLength         = CPTDecimalFromDouble(10.0);
-    x.orthogonalCoordinateDecimal = CPTDecimalFromInteger(0);
-    x.minorTicksPerInterval       = 1;
-    
-    CPTXYAxis *y  = axisSet.yAxis;
-    NSDecimal six = CPTDecimalFromInteger(6);
-    y.majorIntervalLength         = CPTDecimalDivide([length decimalValue], six);
-    y.majorTickLineStyle          = nil;
-    y.minorTicksPerInterval       = 4;
-    y.minorTickLineStyle          = nil;
-    y.orthogonalCoordinateDecimal = CPTDecimalFromInteger(0);
-    y.alternatingBandFills        = @[[[CPTColor whiteColor] colorWithAlphaComponent:CPTFloat(0.1)], [NSNull null]];
     
     [theGraph reloadData];
 }
@@ -187,7 +173,18 @@
 
 -(id)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
 {
-    return @25;
+    NSNumber *num = @0;
+    
+    if ( fieldEnum == CPTScatterPlotFieldX ) {
+        num = @(index);
+    }
+    else if ( fieldEnum == CPTScatterPlotFieldY ) {
+        num = @(rand() % (0 - 100) + 0);
+    }
+    
+    NSLog(@"%@", num);
+    
+    return num;
 }
 
 #pragma mark - BLEDelegate
