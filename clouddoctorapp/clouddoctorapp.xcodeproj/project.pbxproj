@@ -21,6 +21,7 @@
 		66EDE7481A6A3625001519FF /* CDMainViewController+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE7471A6A3625001519FF /* CDMainViewController+Animations.m */; };
 		66EDE74B1A6A36CC001519FF /* SensorOperationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE74A1A6A36CC001519FF /* SensorOperationController.m */; };
 		66EDE7511A6A490A001519FF /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE7501A6A490A001519FF /* BLE.m */; };
+		66EDE7871A6A886D001519FF /* CDDiagnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE7861A6A886D001519FF /* CDDiagnosisViewController.m */; };
 		A227E8B14577ECDB9FAF0E80 /* libPods-clouddoctorapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A119943669CF35F3E18000 /* libPods-clouddoctorapp.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,8 @@
 		66EDE74F1A6A490A001519FF /* BLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
 		66EDE7501A6A490A001519FF /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
 		66EDE7521A6A493C001519FF /* BLEDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+		66EDE7851A6A886D001519FF /* CDDiagnosisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDDiagnosisViewController.h; sourceTree = "<group>"; };
+		66EDE7861A6A886D001519FF /* CDDiagnosisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDDiagnosisViewController.m; sourceTree = "<group>"; };
 		8DABAFEBEEA633B1DB6A5725 /* Pods-clouddoctorapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.release.xcconfig"; sourceTree = "<group>"; };
 		CB57A61504F2989588D77FB5 /* Pods-clouddoctorapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,6 +174,8 @@
 				6623FCF41A6959E7009FBB8E /* CDMainViewController.m */,
 				66EDE7461A6A3625001519FF /* CDMainViewController+Animations.h */,
 				66EDE7471A6A3625001519FF /* CDMainViewController+Animations.m */,
+				66EDE7851A6A886D001519FF /* CDDiagnosisViewController.h */,
+				66EDE7861A6A886D001519FF /* CDDiagnosisViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 			files = (
 				6623FCF51A6959E7009FBB8E /* CDMainViewController.m in Sources */,
 				6623FCF21A6959E7009FBB8E /* AppDelegate.m in Sources */,
+				66EDE7871A6A886D001519FF /* CDDiagnosisViewController.m in Sources */,
 				6623FCEF1A6959E7009FBB8E /* main.m in Sources */,
 				66EDE7511A6A490A001519FF /* BLE.m in Sources */,
 				66EDE74B1A6A36CC001519FF /* SensorOperationController.m in Sources */,

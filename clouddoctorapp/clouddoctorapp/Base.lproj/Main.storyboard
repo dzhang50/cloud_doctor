@@ -108,11 +108,31 @@
                         <outlet property="submitButton" destination="xWc-H1-OOs" id="VW4-yk-XpC"/>
                         <outlet property="temperatureLabel" destination="Jgt-aJ-FDV" id="8C8-a2-qcE"/>
                         <outlet property="uploadImageView" destination="23H-AM-zyQ" id="FCf-ek-HaD"/>
+                        <segue destination="t69-wO-ewW" kind="push" id="xYi-8N-HZT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="179" y="356"/>
+        </scene>
+        <!--Diagnosis View Controller-->
+        <scene sceneID="BKF-Bp-OLp">
+            <objects>
+                <viewController storyboardIdentifier="CDDiagnosisViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="t69-wO-ewW" customClass="CDDiagnosisViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bXL-DA-fYr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Aui-r7-eHV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rh9-Ba-quq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Klp-t4-RLe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rbj-t4-F3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="635" y="356"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yrj-9K-T1H">
