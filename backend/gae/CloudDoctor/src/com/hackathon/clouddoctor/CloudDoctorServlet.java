@@ -1,12 +1,10 @@
 package com.hackathon.clouddoctor;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,95 +21,87 @@ public class CloudDoctorServlet extends HttpServlet {
 
 		String action = req.getParameter("action");
 		String query = req.getParameter("query");
-		if(query != null) {query.trim();}
-		System.out.println("Action: "+action+", query: "+query);
+		if (query != null) {
+			query.trim();
+		}
+		System.out.println("Action: " + action + ", query: " + query);
 
-		if(action.equals("diag")) {
-			System.out.println("Diagnose query = "+query);
-			
-			String cleanQuery = query.replaceAll("[^a-zA-Z ]", "").toLowerCase();
-			
+		if (action.equals("diag")) {
+			System.out.println("Diagnose query = " + query);
+
+			String cleanQuery = query.replaceAll("[^a-zA-Z ]", "")
+					.toLowerCase();
+
 			Stemmer stem = new Stemmer();
 			String stemmedQuery = stem.doStem(cleanQuery);
-			System.out.println("Answer: "+stemmedQuery);
-			
-			
-			
+			System.out.println("Answer: " + stemmedQuery);
+			List<String> tokens = new ArrayList<String>(
+					Arrays.asList(stemmedQuery.split(" ")));
+			int i = 0;
+			while (i < tokens.size()) {
+				if (tokens.get(i).equals("")) {
+					tokens.remove(i);
+				} else {
+					i++;
+				}
+			}
+
+			// If this server hasn't built docs yet, build docs
+			if ((Global.globalDoc == null) || (Global.docs == null)
+					|| (Global.docNames == null)) {
+				Global.buildDocs();
+			}
+
+			Document queryDoc = new Document("query");
+			for (String token : tokens) {
+				// System.out.println(token);
+				if (queryDoc.freqs.containsKey(token)) {
+					double val = queryDoc.freqs.get(token);
+					queryDoc.freqs.put(token,
+							val + 1.0 / (double) tokens.size());
+				} else {
+					queryDoc.freqs.put(token, 1.0 / (double) tokens.size());
+				}
+			}
+
+			List<Tuple<String, Double>> scores = new ArrayList<Tuple<String, Double>>();
+			int scoreIdx = 0;
+			// System.out.println(entry.getKey() + ": " + entry.getValue());
+			for (Document doc : Global.docs) {
+				double tfidf = 0.0;
+
+				for (Map.Entry<String, Double> entry : queryDoc.freqs
+						.entrySet()) {
+					if (doc.freqs.containsKey(entry.getKey())) {
+						// TODO: Cosine Similarity
+						tfidf += entry.getValue()
+								* doc.freqs.get(entry.getKey());
+					}
+				}
+				scores.add(new Tuple(doc.name, tfidf));
+			}
+
+			Collections.sort(scores, new Comparator<Tuple<String, Double>>() {
+				public int compare(Tuple<String, Double> s1,
+						Tuple<String, Double> s2) {
+					if (s1.second < s2.second)
+						return 1;
+					if (s1.second > s2.second)
+						return -1;
+					return 0;
+				}
+			});
+
 			resp.setContentType("text/plain");
 			resp.getWriter().println(stemmedQuery);
-		}
-		else if(action.equals("build")) {
-			// Read all documents in folder
-		
-			File folder = new File("diseases/");
-			File[] listOfFiles = folder.listFiles();
-			Document globalDoc = new Document("global");
-			List<Document> docs = new ArrayList<Document>();
-			int docIdx = 0;
-			for (File file : listOfFiles) {
-			    if (file.isFile()) {
-			        System.out.println(file.getName());
-			        
-					FileInputStream fin = null;
-					try {
-						fin = new FileInputStream(file);
-					} catch (FileNotFoundException e) {
-						System.out.println("ERROR: FILE NOT FOUND!!!");
-					}
-					BufferedReader fileReader = new BufferedReader(new InputStreamReader(
-							fin));
-					String line;
-					
-					String diseaseName = fileReader.readLine();
-					System.out.println("Disease: "+diseaseName+"\n");
-
-			    	docs.add(new Document(diseaseName.trim()));
-			    	
-					String desc = "";
-					while ((line = fileReader.readLine()) != null) {
-						//System.out.println(line.trim());
-						desc += line.trim() + " ";
-					}
-					//System.out.println("Desc: "+desc);
-					String cleanDesc = desc.replaceAll("[^a-zA-Z ]", "").toLowerCase();
-					Stemmer stem = new Stemmer();
-					String stemmedDesc = stem.doStem(cleanDesc);
-					
-					String[] tokens = stemmedDesc.split(" ");
-					
-					for(String token : tokens) {
-						//System.out.println(token);
-						if(globalDoc.freqs.containsKey(token)) {
-							int val = globalDoc.freqs.get(token);
-							globalDoc.freqs.put(token, val+1);
-						}
-						else {
-							globalDoc.freqs.put(token, 1);
-						}
-						
-						if(docs.get(docIdx).freqs.containsKey(token)) {
-							int val = docs.get(docIdx).freqs.get(token);
-							docs.get(docIdx).freqs.put(token,  val+1);
-						}
-						else {
-							docs.get(docIdx).freqs.put(token,  1);
-						}
-					}
-					docIdx++;
-			    }
-			}
-			
-			for (Map.Entry<String, Integer> entry : globalDoc.freqs.entrySet()) {
-			    System.out.println(entry.getKey()+" : "+entry.getValue());
-			}
-			
-			for(Document doc : docs) {
-				System.out.println(doc.name);
-				for(Map.Entry<String, Integer> entry : doc.freqs.entrySet()) {
-					System.out.println(entry.getKey() + ": "+entry.getValue());
-				}
+			resp.getWriter().println(scores);
+		} else if (action.equals("build")) {
+			try {
+				Global.buildDocs();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}
 }
-
