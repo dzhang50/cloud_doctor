@@ -8,7 +8,11 @@
 
 #import "CDDiagnosisViewController.h"
 
+#import "CWStatusBarNotification.h"
+
 @interface CDDiagnosisViewController ()
+
+@property CWStatusBarNotification *statusBarNotification;
 
 @end
 
@@ -19,6 +23,20 @@
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
+    
+    self.statusBarNotification = [CWStatusBarNotification new];
+    self.statusBarNotification.notificationLabelBackgroundColor = [UIColor whiteColor];
+    self.statusBarNotification.notificationLabelTextColor = [UIColor colorWithRed:202.0/255.0
+                                                                            green:35.0/255.0
+                                                                             blue:32.0/255.0
+                                                                            alpha:1.0];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.statusBarNotification displayNotificationWithMessage:@"💉 Thanks for using Cloud Doctor! 💊" forDuration:3.0f];
+    });
 }
 
 - (void)didReceiveMemoryWarning {

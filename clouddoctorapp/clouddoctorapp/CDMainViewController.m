@@ -182,8 +182,6 @@
         num = @(rand() % (0 - 100) + 0);
     }
     
-    NSLog(@"%@", num);
-    
     return num;
 }
 
@@ -231,14 +229,13 @@
 - (IBAction)handleSubmitSymptoms:(id)sender {
     
     if (self.inAlertMode) {
-        NSLog(@"handleSubmitSymptoms");
-        [self.statusBarNotification displayNotificationWithMessage:@"Listening..." completion:nil];
+        [self.statusBarNotification displayNotificationWithMessage:@"🎤 Listening 🎤" completion:nil];
         self.inAlertMode = NO;
         [self setListeningMode];
     } else {
         [self.statusBarNotification dismissNotification];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self.statusBarNotification displayNotificationWithMessage:@"Diagnosing..." completion:nil];
+            [self.statusBarNotification displayNotificationWithMessage:@"🚀 Diagnosing 🚀" completion:nil];
         });
         [self setWaitingMode];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 8 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
