@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
@@ -44,11 +46,12 @@ public class CloudDoctorServlet extends HttpServlet {
 			File folder = new File("diseases/");
 			File[] listOfFiles = folder.listFiles();
 			Document globalDoc = new Document("global");
-			
+			List<Document> docs = new ArrayList<Document>();
+			int docIdx = 0;
 			for (File file : listOfFiles) {
 			    if (file.isFile()) {
 			        System.out.println(file.getName());
-			    	
+			        
 					FileInputStream fin = null;
 					try {
 						fin = new FileInputStream(file);
@@ -61,7 +64,9 @@ public class CloudDoctorServlet extends HttpServlet {
 					
 					String diseaseName = fileReader.readLine();
 					System.out.println("Disease: "+diseaseName+"\n");
-					
+
+			    	docs.add(new Document(diseaseName.trim()));
+			    	
 					String desc = "";
 					while ((line = fileReader.readLine()) != null) {
 						//System.out.println(line.trim());
@@ -83,13 +88,28 @@ public class CloudDoctorServlet extends HttpServlet {
 						else {
 							globalDoc.freqs.put(token, 1);
 						}
+						
+						if(docs.get(docIdx).freqs.containsKey(token)) {
+							int val = docs.get(docIdx).freqs.get(token);
+							docs.get(docIdx).freqs.put(token,  val+1);
+						}
+						else {
+							docs.get(docIdx).freqs.put(token,  1);
+						}
 					}
-					
+					docIdx++;
 			    }
 			}
 			
 			for (Map.Entry<String, Integer> entry : globalDoc.freqs.entrySet()) {
 			    System.out.println(entry.getKey()+" : "+entry.getValue());
+			}
+			
+			for(Document doc : docs) {
+				System.out.println(doc.name);
+				for(Map.Entry<String, Integer> entry : doc.freqs.entrySet()) {
+					System.out.println(entry.getKey() + ": "+entry.getValue());
+				}
 			}
 		}
 	}
