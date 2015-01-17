@@ -95,7 +95,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Cloud Doctor" id="yaW-kW-g22"/>
+                    <navigationItem key="navigationItem" title="Dr.Cloud" id="yaW-kW-g22"/>
                     <connections>
                         <outlet property="carbonDioxideLabel" destination="pm1-Pe-oyq" id="Pbq-2Y-bnf"/>
                         <outlet property="ecgGraphHostingView" destination="Bin-aF-766" id="OKM-RE-Rwz"/>

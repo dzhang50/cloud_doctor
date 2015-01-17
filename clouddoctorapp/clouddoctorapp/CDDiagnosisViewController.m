@@ -35,7 +35,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.statusBarNotification displayNotificationWithMessage:@"💉 Thanks for using Cloud Doctor! 💊" forDuration:3.0f];
+        [self.statusBarNotification displayNotificationWithMessage:@"💉 Thanks for using Dr.Cloud! 💊" forDuration:3.0f];
     });
 }
 

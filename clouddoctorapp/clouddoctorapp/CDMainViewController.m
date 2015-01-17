@@ -99,7 +99,7 @@ const unsigned char SpeechKitApplicationKey[] = {
     self.statusBarNotification.notificationLabelTextColor = self.CDRed;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.statusBarNotification displayNotificationWithMessage:@"💉 Cloud Doctor is at your service! 💊" forDuration:3.0f];
+        [self.statusBarNotification displayNotificationWithMessage:@"💉 Dr.Cloud is at your service! 💊" forDuration:3.0f];
     });
 }
 
@@ -218,15 +218,18 @@ const unsigned char SpeechKitApplicationKey[] = {
 
 #pragma mark - SKRecognizerDelegate
 
-- (void)recognizerDidBeginRecording:(SKRecognizer *)recognizer {
+- (void)recognizerDidBeginRecording:(SKRecognizer *)recognizer
+{
     NSLog(@"didBeginRecording");
 }
 
-- (void)recognizerDidFinishRecording:(SKRecognizer *)recognizer {
+- (void)recognizerDidFinishRecording:(SKRecognizer *)recognizer
+{
     NSLog(@"didFinishRecording");
 }
 
-- (void)recognizer:(SKRecognizer *)recognizer didFinishWithResults:(SKRecognition *)results {
+- (void)recognizer:(SKRecognizer *)recognizer didFinishWithResults:(SKRecognition *)results
+{
     NSLog(@"didFinishWithResults");
     long numOfResults = [results.results count];
     
@@ -235,6 +238,11 @@ const unsigned char SpeechKitApplicationKey[] = {
         NSLog(@"%@", [results results]);
 
     }
+}
+
+-(void)recognizer:(SKRecognizer *)recognizer didFinishWithError:(NSError *)error suggestion:(NSString *)suggestion
+{
+    
 }
 
 #pragma mark - UIButton

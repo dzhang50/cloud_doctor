@@ -28,6 +28,7 @@
 		66EDE7961A6B0B1E001519FF /* earcon_cancel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 66EDE7931A6B0B1E001519FF /* earcon_cancel.wav */; };
 		66EDE7971A6B0B1E001519FF /* earcon_done_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 66EDE7941A6B0B1E001519FF /* earcon_done_listening.wav */; };
 		66EDE7981A6B0B1E001519FF /* earcon_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 66EDE7951A6B0B1E001519FF /* earcon_listening.wav */; };
+		66EDE79B1A6B12CE001519FF /* DeliveryOperationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE79A1A6B12CE001519FF /* DeliveryOperationController.m */; };
 		A227E8B14577ECDB9FAF0E80 /* libPods-clouddoctorapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A119943669CF35F3E18000 /* libPods-clouddoctorapp.a */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,8 @@
 		66EDE7931A6B0B1E001519FF /* earcon_cancel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earcon_cancel.wav; path = ../../../../../Downloads/DragonMobileSDK_1.4.12/DragonMobileRecognizer/earcon_cancel.wav; sourceTree = "<group>"; };
 		66EDE7941A6B0B1E001519FF /* earcon_done_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earcon_done_listening.wav; path = ../../../../../Downloads/DragonMobileSDK_1.4.12/DragonMobileRecognizer/earcon_done_listening.wav; sourceTree = "<group>"; };
 		66EDE7951A6B0B1E001519FF /* earcon_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earcon_listening.wav; path = ../../../../../Downloads/DragonMobileSDK_1.4.12/DragonMobileRecognizer/earcon_listening.wav; sourceTree = "<group>"; };
+		66EDE7991A6B12CE001519FF /* DeliveryOperationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryOperationController.h; sourceTree = "<group>"; };
+		66EDE79A1A6B12CE001519FF /* DeliveryOperationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryOperationController.m; sourceTree = "<group>"; };
 		8DABAFEBEEA633B1DB6A5725 /* Pods-clouddoctorapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.release.xcconfig"; sourceTree = "<group>"; };
 		CB57A61504F2989588D77FB5 /* Pods-clouddoctorapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,8 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				66EDE73F1A69FBED001519FF /* OperationControllers */,
-				66EDE73E1A69F909001519FF /* Models */,
-				66EDE7391A69F511001519FF /* ViewObjects */,
 				66EDE7381A69F503001519FF /* ViewControllers */,
 				66EDE74E1A6A48E2001519FF /* Util */,
 				6623FCF01A6959E7009FBB8E /* AppDelegate.h */,
@@ -201,25 +202,13 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		66EDE7391A69F511001519FF /* ViewObjects */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = ViewObjects;
-			sourceTree = "<group>";
-		};
-		66EDE73E1A69F909001519FF /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		66EDE73F1A69FBED001519FF /* OperationControllers */ = {
 			isa = PBXGroup;
 			children = (
 				66EDE7491A6A36CC001519FF /* SensorOperationController.h */,
 				66EDE74A1A6A36CC001519FF /* SensorOperationController.m */,
+				66EDE7991A6B12CE001519FF /* DeliveryOperationController.h */,
+				66EDE79A1A6B12CE001519FF /* DeliveryOperationController.m */,
 			);
 			name = OperationControllers;
 			sourceTree = "<group>";
@@ -382,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6623FCF51A6959E7009FBB8E /* CDMainViewController.m in Sources */,
+				66EDE79B1A6B12CE001519FF /* DeliveryOperationController.m in Sources */,
 				6623FCF21A6959E7009FBB8E /* AppDelegate.m in Sources */,
 				66EDE7871A6A886D001519FF /* CDDiagnosisViewController.m in Sources */,
 				6623FCEF1A6959E7009FBB8E /* main.m in Sources */,
