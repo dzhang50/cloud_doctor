@@ -18,22 +18,60 @@
     } completion:nil];
 }
 
-- (void)activateListeningMode
+- (void)setNormalMode
+{
+    [UIView animateWithDuration:0.5f animations:^{
+        [self.statusLabel setAlpha:1.0f];
+        [self.microphoneImageView setAlpha:0.0];
+        self.halo.backgroundColor = self.CDGreen.CGColor;
+        self.submitButton.alpha = 0.0f;
+    }];
+    
+    [UIView transitionWithView:self.statusLabel duration:0.25f options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.statusLabel.text = @"all vitals normal";
+    } completion:nil];
+}
+
+- (void)setAlertMode
+{
+    [UIView animateWithDuration:0.5f animations:^{
+        [self.statusLabel setAlpha:1.0f];
+        [self.microphoneImageView setAlpha:0.0];
+        self.halo.backgroundColor = self.CDRed.CGColor;
+        self.submitButton.alpha = 1.0f;
+    }];
+    
+    [UIView transitionWithView:self.statusLabel duration:0.25f options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.statusLabel.text = @"VITALS ALERT";
+    } completion:nil];
+}
+
+- (void)setListeningMode
 {
     [UIView animateWithDuration:0.5f animations:^{
         [self.statusLabel setAlpha:0.0f];
         [self.microphoneImageView setAlpha:1.0];
         self.halo.backgroundColor = self.CDBlue.CGColor;
     }];
+    
+    [UIView transitionWithView:self.submitButton.titleLabel duration:0.25f options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [self.submitButton setTitle:@"Done" forState:UIControlStateNormal];
+    } completion:nil];
 }
 
-- (void)deactivateListeningMode
+- (void)setWaitingMode
 {
     [UIView animateWithDuration:0.5f animations:^{
-        [self.statusLabel setAlpha:1.0f];
+        [self.statusLabel setAlpha:0.0f];
         [self.microphoneImageView setAlpha:0.0];
-        self.halo.backgroundColor = self.CDGreen.CGColor;
+        [self.uploadImageView setAlpha:1.0f];
+        [self.submitButton setAlpha:0.0f];
+        self.halo.backgroundColor = self.CDYellow.CGColor;
     }];
+    
+    [UIView transitionWithView:self.submitButton.titleLabel duration:0.25f options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [self.submitButton setTitle:@"" forState:UIControlStateNormal];
+    } completion:nil];
 }
 
 @end

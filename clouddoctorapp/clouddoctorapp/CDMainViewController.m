@@ -21,6 +21,8 @@
 @property (nonatomic, strong) BLE *bleShield;
 @property CWStatusBarNotification *statusBarNotification;
 
+@property BOOL inAlertMode;
+
 @end
 
 @implementation CDMainViewController
@@ -37,6 +39,12 @@
                                    selector:@selector(updateLabelsWithFakeData)
                                    userInfo:nil
                                     repeats:YES];
+    
+    [NSTimer scheduledTimerWithTimeInterval:10.0
+                                     target:self
+                                   selector:@selector(simulateFakeAlert)
+                                   userInfo:nil
+                                    repeats:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -57,6 +65,10 @@
                                   green:32.0/255.0
                                    blue:202.0/255.0
                                   alpha:1.0];
+    self.CDYellow = [UIColor colorWithRed:255.0/255.0
+                                    green:211.0/255.0
+                                     blue:0.0
+                                    alpha:1.0];
         
     self.halo = [PulsingHaloLayer layer];
     self.halo.position = self.statusLabel.center;
@@ -70,7 +82,9 @@
     self.statusBarNotification.notificationLabelBackgroundColor = self.CDRed;
     self.statusBarNotification.notificationLabelTextColor = [UIColor whiteColor];
     
-    [self.statusBarNotification displayNotificationWithMessage:@"Cloud Doctor is at your service!" forDuration:3.0f];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.statusBarNotification displayNotificationWithMessage:@"Cloud Doctor is at your service!" forDuration:3.0f];
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,6 +103,13 @@
     [self updateLabel:self.ecgLabel WithText:[NSString stringWithFormat:@"%d.5", rand() % (0 - 100) + 0]];
     [self updateLabel:self.oxygenLabel WithText:[NSString stringWithFormat:@"%d%%", rand() % (0 - 100) + 0]];
     [self updateLabel:self.carbonDioxideLabel WithText:[NSString stringWithFormat:@"%d%%", rand() % (0 - 100) + 0]];
+}
+
+- (void)simulateFakeAlert
+{
+    NSLog(@"simulating fake alert");
+    self.inAlertMode = YES;
+    [self setAlertMode];
 }
 
 #pragma mark - BLEDelegate
@@ -132,10 +153,19 @@
 #pragma mark - UIButton
 
 - (IBAction)handleSubmitSymptoms:(id)sender {
-    NSLog(@"handleSubmitSymptoms");
-    [self.statusBarNotification displayNotificationWithMessage:@"Listening..." completion:nil];
     
-    [self activateListeningMode];
+    if (self.inAlertMode) {
+        NSLog(@"handleSubmitSymptoms");
+        [self.statusBarNotification displayNotificationWithMessage:@"Listening..." completion:nil];
+        self.inAlertMode = NO;
+        [self setListeningMode];
+    } else {
+        [self.statusBarNotification dismissNotification];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.statusBarNotification displayNotificationWithMessage:@"Diagnosing..." completion:nil];
+        });
+        [self setWaitingMode];
+    }
 }
 
 @end

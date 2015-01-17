@@ -13,7 +13,9 @@
 - (void)updateLabel:(UILabel *)label
            WithText:(NSString *)newText;
 
-- (void)activateListeningMode;
-- (void)deactivateListeningMode;
+- (void)setNormalMode;
+- (void)setAlertMode;
+- (void)setListeningMode;
+- (void)setWaitingMode;
 
 @end

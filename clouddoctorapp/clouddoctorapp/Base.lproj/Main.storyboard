@@ -67,7 +67,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36i-Dn-omI" userLabel="Footer">
                                 <rect key="frame" x="0.0" y="454" width="320" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWc-H1-OOs">
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWc-H1-OOs">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="21"/>
                                         <state key="normal" title="Submit Symptoms">
@@ -91,6 +91,9 @@
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleAspectFit" fixedFrame="YES" image="microphone" translatesAutoresizingMaskIntoConstraints="NO" id="g6F-K3-4fN">
                                 <rect key="frame" x="110" y="297" width="100" height="100"/>
                             </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleAspectFit" fixedFrame="YES" image="upload" translatesAutoresizingMaskIntoConstraints="NO" id="23H-AM-zyQ">
+                                <rect key="frame" x="110" y="297" width="100" height="100"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -104,6 +107,7 @@
                         <outlet property="statusLabel" destination="wqQ-Aw-l7s" id="0M3-NB-0ZG"/>
                         <outlet property="submitButton" destination="xWc-H1-OOs" id="VW4-yk-XpC"/>
                         <outlet property="temperatureLabel" destination="Jgt-aJ-FDV" id="8C8-a2-qcE"/>
+                        <outlet property="uploadImageView" destination="23H-AM-zyQ" id="FCf-ek-HaD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -138,6 +142,7 @@
         <image name="microphone" width="250" height="250"/>
         <image name="oxygen" width="166" height="166"/>
         <image name="temperature" width="166" height="166"/>
+        <image name="upload" width="250" height="250"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

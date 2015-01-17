@@ -30,12 +30,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *microphoneImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *uploadImageView;
 
 @property (nonatomic, weak) PulsingHaloLayer *halo;
 
 @property UIColor *CDRed;
 @property UIColor *CDGreen;
 @property UIColor *CDBlue;
+@property UIColor *CDYellow;
 
 - (IBAction)handleSubmitSymptoms:(id)sender;
 
