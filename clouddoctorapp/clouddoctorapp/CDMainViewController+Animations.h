@@ -10,6 +10,7 @@
 
 @interface CDMainViewController (Animations)
 
-
+- (void)updateLabel:(UILabel *)label
+           WithText:(NSString *)newText;
 
 @end

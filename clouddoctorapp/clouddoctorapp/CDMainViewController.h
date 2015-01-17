@@ -16,8 +16,6 @@
 
 #import "CWStatusBarNotification.h"
 
-#define RBL_SERVICE_UUID @"713d0000-503e-4c75-ba94-3148f18d941e";
-
 @interface CDMainViewController : UIViewController <BLEDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *hearbeatLabel;

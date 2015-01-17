@@ -7,6 +7,8 @@
 //
 
 #import "CDMainViewController.h"
+#import "CDMainViewController+Animations.h"
+
 #import "AppDelegate.h"
 
 #import <Parse/Parse.h>
@@ -19,7 +21,7 @@
 
 //@property (strong, nonatomic) SKRecognizer* voiceSearch;
 
-@property (nonatomic, strong) BLE              *bleShield;
+@property (nonatomic, strong) BLE            *bleShield;
 
 @property CWStatusBarNotification            *statusBarNotification;
 @property (nonatomic, weak) PulsingHaloLayer *halo;
@@ -38,6 +40,12 @@
     self.bleShield = [[BLE alloc] init];
     [self.bleShield controlSetup];
     self.bleShield.delegate = self;
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self
+                                   selector:@selector(updateLabelsWithFakeData)
+                                   userInfo:nil
+                                    repeats:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -69,9 +77,22 @@
     [self.statusBarNotification displayNotificationWithMessage:@"Cloud Doctor is at your service!" forDuration:3.0f];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Test 
+
+- (void)updateLabelsWithFakeData
+{
+    NSLog(@"updating labels with fake data");
+    [self updateLabel:self.hearbeatLabel WithText:[NSString stringWithFormat:@"%d bpm", rand() % (0 - 125) + 0]];
+    [self updateLabel:self.temperatureLabel WithText:[NSString stringWithFormat:@"%d°F", rand() % (0 - 125) + 0]];
+    [self updateLabel:self.ecgLabel WithText:[NSString stringWithFormat:@"%d.5", rand() % (0 - 100) + 0]];
+    [self updateLabel:self.oxygenLabel WithText:[NSString stringWithFormat:@"%d%%", rand() % (0 - 100) + 0]];
+    [self updateLabel:self.carbonDioxideLabel WithText:[NSString stringWithFormat:@"%d%%", rand() % (0 - 100) + 0]];
 }
 
 #pragma mark - BLEDelegate

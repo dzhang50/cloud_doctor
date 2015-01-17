@@ -10,4 +10,12 @@
 
 @implementation CDMainViewController (Animations)
 
+- (void)updateLabel:(UILabel *)label
+           WithText:(NSString *)newText
+{
+    [UIView transitionWithView:label duration:0.25f options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        label.text = newText;
+    } completion:nil];
+}
+
 @end
