@@ -1,5 +1,5 @@
-# cloud_doctor
-repository for Cloud Doctor (PennApps Winter 2015)
+# Dr.Cloud
+repository for Dr.Cloud (PennApps Winter 2015)
 
 * iOS Application - clouddoctorapp 
 * backend - backend (Parse, Google App Engine)
