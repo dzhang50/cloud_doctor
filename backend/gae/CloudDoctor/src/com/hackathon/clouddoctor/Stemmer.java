@@ -63,8 +63,7 @@ public class Stemmer {
 		catch (IOException e)
 		{  System.out.println("error reading "+str);
 		}
-		String wStr = new String(w);
-		System.out.println("w: "+ wStr);
+		System.out.print("\n");
 		return output;
 	}
 }
