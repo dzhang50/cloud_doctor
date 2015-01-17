@@ -11,15 +11,14 @@
 #import "PulsingHaloLayer.h"
 
 #import "CorePlot-CocoaTouch.h"
-
-//#import <SpeechKit/SpeechKit.h>
+#import <SpeechKit/SpeechKit.h>
 
 @import CoreBluetooth;
 @import QuartzCore;
 
 #import "CWStatusBarNotification.h"
 
-@interface CDMainViewController : UIViewController <BLEDelegate, CPTPlotDataSource>
+@interface CDMainViewController : UIViewController <BLEDelegate, CPTPlotDataSource, SpeechKitDelegate, SKRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 

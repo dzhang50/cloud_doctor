@@ -16,7 +16,7 @@
 
 @interface CDMainViewController ()
 
-//@property (strong, nonatomic) SKRecognizer* voiceSearch;
+@property (strong, nonatomic) SKRecognizer* voiceSearch;
 
 @property (nonatomic, readwrite, strong) CPTXYGraph *ecgGraph;
 
@@ -26,6 +26,10 @@
 @property BOOL inAlertMode;
 
 @end
+
+const unsigned char SpeechKitApplicationKey[] = {
+0xa8, 0xc7, 0x4b, 0xe7, 0x20, 0x9d, 0xc3, 0x09, 0x4a, 0xb3, 0xef, 0x24, 0x03, 0xb0, 0x56, 0x3d, 0x8d, 0x6e, 0xbc, 0x60, 0xdb, 0x90, 0x7d, 0x80, 0xe3, 0xe0, 0xaf, 0x67, 0x07, 0x65, 0xa2, 0xaf, 0x2c, 0xed, 0x97, 0x4c, 0x8a, 0x5a, 0x55, 0xd5, 0x0d, 0x44, 0xf9, 0x11, 0xf4, 0x4f, 0x4e, 0x82, 0xbd, 0x0a, 0xe2, 0x99, 0x9a, 0x60, 0x19, 0x7d, 0x40, 0xc8, 0xe4, 0x47, 0x2d, 0x86, 0xf6, 0x5a
+};
 
 @implementation CDMainViewController
 
@@ -37,13 +41,16 @@
     [self.bleShield controlSetup];
     self.bleShield.delegate = self;
     
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate setupSpeechKitConnection];
+    
     [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
                                    selector:@selector(updateLabelsWithFakeData)
                                    userInfo:nil
                                     repeats:YES];
     
-    [NSTimer scheduledTimerWithTimeInterval:10.0
+    [NSTimer scheduledTimerWithTimeInterval:5.0
                                      target:self
                                    selector:@selector(simulateFakeAlert)
                                    userInfo:nil
@@ -117,7 +124,6 @@
 
 - (void)simulateFakeAlert
 {
-    NSLog(@"simulating fake alert");
     self.inAlertMode = YES;
     [self setAlertMode];
 }
@@ -212,17 +218,24 @@
 
 #pragma mark - SKRecognizerDelegate
 
-//- (void)recognizerDidBeginRecording:(SKRecognizer *)recognizer {
-//    
-//}
-//
-//- (void)recognizerDidFinishRecording:(SKRecognizer *)recognizer {
-//    
-//}
-//
-//- (void)recognizer:(SKRecognizer *)recognizer didFinishWithResults:(SKRecognition *)results {
-//    
-//}
+- (void)recognizerDidBeginRecording:(SKRecognizer *)recognizer {
+    NSLog(@"didBeginRecording");
+}
+
+- (void)recognizerDidFinishRecording:(SKRecognizer *)recognizer {
+    NSLog(@"didFinishRecording");
+}
+
+- (void)recognizer:(SKRecognizer *)recognizer didFinishWithResults:(SKRecognition *)results {
+    NSLog(@"didFinishWithResults");
+    long numOfResults = [results.results count];
+    
+    if (numOfResults > 0) {
+        // update the text of text field with best result from SpeechKit
+        NSLog(@"%@", [results results]);
+
+    }
+}
 
 #pragma mark - UIButton
 
@@ -232,8 +245,19 @@
         [self.statusBarNotification displayNotificationWithMessage:@"🎤 Listening 🎤" completion:nil];
         self.inAlertMode = NO;
         [self setListeningMode];
+        
+        self.voiceSearch = [[SKRecognizer alloc] initWithType:SKDictationRecognizerType
+                                                    detection:SKNoEndOfSpeechDetection
+                                                     language:@"en_US"
+                                                     delegate:self];
     } else {
         [self.statusBarNotification dismissNotification];
+        
+        if (self.voiceSearch) {
+            [self.voiceSearch stopRecording];
+            //[self.voiceSearch cancel];
+        }
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self.statusBarNotification displayNotificationWithMessage:@"🚀 Diagnosing 🚀" completion:nil];
         });

@@ -23,6 +23,11 @@
 		66EDE7511A6A490A001519FF /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE7501A6A490A001519FF /* BLE.m */; };
 		66EDE7871A6A886D001519FF /* CDDiagnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE7861A6A886D001519FF /* CDDiagnosisViewController.m */; };
 		66EDE78E1A6AE717001519FF /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE78D1A6AE717001519FF /* Accelerate.framework */; };
+		66EDE7901A6AF1B0001519FF /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE78F1A6AF1B0001519FF /* SpeechKit.framework */; };
+		66EDE7921A6AF20F001519FF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE7911A6AF20F001519FF /* AVFoundation.framework */; };
+		66EDE7961A6B0B1E001519FF /* earcon_cancel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 66EDE7931A6B0B1E001519FF /* earcon_cancel.wav */; };
+		66EDE7971A6B0B1E001519FF /* earcon_done_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 66EDE7941A6B0B1E001519FF /* earcon_done_listening.wav */; };
+		66EDE7981A6B0B1E001519FF /* earcon_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 66EDE7951A6B0B1E001519FF /* earcon_listening.wav */; };
 		A227E8B14577ECDB9FAF0E80 /* libPods-clouddoctorapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A119943669CF35F3E18000 /* libPods-clouddoctorapp.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +70,11 @@
 		66EDE7851A6A886D001519FF /* CDDiagnosisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDDiagnosisViewController.h; sourceTree = "<group>"; };
 		66EDE7861A6A886D001519FF /* CDDiagnosisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDDiagnosisViewController.m; sourceTree = "<group>"; };
 		66EDE78D1A6AE717001519FF /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		66EDE78F1A6AF1B0001519FF /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpeechKit.framework; path = ../../../../Downloads/DragonMobileSDK_1.4.12/SpeechKit.framework; sourceTree = "<group>"; };
+		66EDE7911A6AF20F001519FF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		66EDE7931A6B0B1E001519FF /* earcon_cancel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earcon_cancel.wav; path = ../../../../../Downloads/DragonMobileSDK_1.4.12/DragonMobileRecognizer/earcon_cancel.wav; sourceTree = "<group>"; };
+		66EDE7941A6B0B1E001519FF /* earcon_done_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earcon_done_listening.wav; path = ../../../../../Downloads/DragonMobileSDK_1.4.12/DragonMobileRecognizer/earcon_done_listening.wav; sourceTree = "<group>"; };
+		66EDE7951A6B0B1E001519FF /* earcon_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earcon_listening.wav; path = ../../../../../Downloads/DragonMobileSDK_1.4.12/DragonMobileRecognizer/earcon_listening.wav; sourceTree = "<group>"; };
 		8DABAFEBEEA633B1DB6A5725 /* Pods-clouddoctorapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.release.xcconfig"; sourceTree = "<group>"; };
 		CB57A61504F2989588D77FB5 /* Pods-clouddoctorapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66EDE7921A6AF20F001519FF /* AVFoundation.framework in Frameworks */,
+				66EDE7901A6AF1B0001519FF /* SpeechKit.framework in Frameworks */,
 				66EDE78E1A6AE717001519FF /* Accelerate.framework in Frameworks */,
 				66EDE7451A6A299C001519FF /* UIKit.framework in Frameworks */,
 				66EDE7431A6A298E001519FF /* Foundation.framework in Frameworks */,
@@ -97,6 +109,8 @@
 		3FD303BE48784EC37E90B05C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66EDE7911A6AF20F001519FF /* AVFoundation.framework */,
+				66EDE78F1A6AF1B0001519FF /* SpeechKit.framework */,
 				66EDE78D1A6AE717001519FF /* Accelerate.framework */,
 				66EDE7441A6A299C001519FF /* UIKit.framework */,
 				66EDE7421A6A298E001519FF /* Foundation.framework */,
@@ -148,6 +162,9 @@
 		6623FCEC1A6959E7009FBB8E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				66EDE7931A6B0B1E001519FF /* earcon_cancel.wav */,
+				66EDE7941A6B0B1E001519FF /* earcon_done_listening.wav */,
+				66EDE7951A6B0B1E001519FF /* earcon_listening.wav */,
 				6623FCED1A6959E7009FBB8E /* Info.plist */,
 				6623FCEE1A6959E7009FBB8E /* main.m */,
 			);
@@ -309,7 +326,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66EDE7961A6B0B1E001519FF /* earcon_cancel.wav in Resources */,
 				6623FCF81A6959E7009FBB8E /* Main.storyboard in Resources */,
+				66EDE7981A6B0B1E001519FF /* earcon_listening.wav in Resources */,
+				66EDE7971A6B0B1E001519FF /* earcon_done_listening.wav in Resources */,
 				6623FCFA1A6959E7009FBB8E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +507,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/pkayfire/Downloads/DragonMobileSDK_1.4.12,
 				);
 				INFOPLIST_FILE = clouddoctorapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -504,6 +525,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/pkayfire/Downloads/DragonMobileSDK_1.4.12,
 				);
 				INFOPLIST_FILE = clouddoctorapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
