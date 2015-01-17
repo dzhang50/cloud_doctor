@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-clouddoctorapp-PulsingHalo.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-clouddoctorapp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>30B914607D48F9E144F0A351</key>
+		<key>0CD07906D374B049FFC5C290</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>77D604F8680B5F6056A172B1</key>
+		<key>990FBBCAB113BB65F087E0BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FDDE2BFC1A881679C00707BD</key>
+		<key>CD45CE4518A26E6690291B6B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FEEA58FF6342EE256DB15CB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

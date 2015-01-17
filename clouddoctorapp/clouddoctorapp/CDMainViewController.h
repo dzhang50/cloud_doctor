@@ -7,9 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+@import CoreBluetooth;
+@import QuartzCore;
 
-@interface CDMainViewController : UIViewController
+#import "CWStatusBarNotification.h"
 
+@interface CDMainViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *hearbeatLabel;
+@property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ecgLabel;
+@property (weak, nonatomic) IBOutlet UILabel *oxygenLabel;
+@property (weak, nonatomic) IBOutlet UILabel *carbonDioxideLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+
+@property (nonatomic, strong) CBCentralManager *centralManager;
+@property (nonatomic, strong) CBPeripheral     *blendMicroPeripheral;
 
 @end
 

@@ -54,3 +54,9 @@
 #define COCOAPODS_VERSION_MINOR_CWStatusBarNotification 2
 #define COCOAPODS_VERSION_PATCH_CWStatusBarNotification 2
 
+// PulsingHalo
+#define COCOAPODS_POD_AVAILABLE_PulsingHalo
+#define COCOAPODS_VERSION_MAJOR_PulsingHalo 0
+#define COCOAPODS_VERSION_MINOR_PulsingHalo 0
+#define COCOAPODS_VERSION_PATCH_PulsingHalo 4
+
