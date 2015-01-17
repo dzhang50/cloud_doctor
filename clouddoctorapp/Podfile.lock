@@ -21,13 +21,20 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CWStatusBarNotification (2.2.2)
+  - PulsingHalo (0.0.4)
 
 DEPENDENCIES:
   - AFNetworking
   - CWStatusBarNotification (~> 2.2.2)
+  - PulsingHalo (from `https://github.com/shu223/PulsingHalo.git`)
+
+EXTERNAL SOURCES:
+  PulsingHalo:
+    :git: https://github.com/shu223/PulsingHalo.git
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   CWStatusBarNotification: 7e43716355830c26124eae9b91c4434dfa2a6a73
+  PulsingHalo: 91a96da0e0008202039f0faf7368ed9b8b575222
 
 COCOAPODS: 0.34.1

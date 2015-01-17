@@ -15,6 +15,9 @@
 		6623FD091A6959E8009FBB8E /* clouddoctorappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623FD081A6959E8009FBB8E /* clouddoctorappTests.m */; };
 		66EDE73B1A69F8C0001519FF /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE73A1A69F8C0001519FF /* CoreBluetooth.framework */; };
 		66EDE73D1A69F8C5001519FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE73C1A69F8C5001519FF /* QuartzCore.framework */; };
+		66EDE7411A6A2988001519FF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE7401A6A2988001519FF /* CoreGraphics.framework */; };
+		66EDE7431A6A298E001519FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE7421A6A298E001519FF /* Foundation.framework */; };
+		66EDE7451A6A299C001519FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE7441A6A299C001519FF /* UIKit.framework */; };
 		A227E8B14577ECDB9FAF0E80 /* libPods-clouddoctorapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A119943669CF35F3E18000 /* libPods-clouddoctorapp.a */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +47,9 @@
 		6623FD081A6959E8009FBB8E /* clouddoctorappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = clouddoctorappTests.m; sourceTree = "<group>"; };
 		66EDE73A1A69F8C0001519FF /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		66EDE73C1A69F8C5001519FF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		66EDE7401A6A2988001519FF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		66EDE7421A6A298E001519FF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		66EDE7441A6A299C001519FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8DABAFEBEEA633B1DB6A5725 /* Pods-clouddoctorapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.release.xcconfig"; sourceTree = "<group>"; };
 		CB57A61504F2989588D77FB5 /* Pods-clouddoctorapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +59,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66EDE7451A6A299C001519FF /* UIKit.framework in Frameworks */,
+				66EDE7431A6A298E001519FF /* Foundation.framework in Frameworks */,
+				66EDE7411A6A2988001519FF /* CoreGraphics.framework in Frameworks */,
 				66EDE73D1A69F8C5001519FF /* QuartzCore.framework in Frameworks */,
 				66EDE73B1A69F8C0001519FF /* CoreBluetooth.framework in Frameworks */,
 				A227E8B14577ECDB9FAF0E80 /* libPods-clouddoctorapp.a in Frameworks */,
@@ -72,6 +81,9 @@
 		3FD303BE48784EC37E90B05C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66EDE7441A6A299C001519FF /* UIKit.framework */,
+				66EDE7421A6A298E001519FF /* Foundation.framework */,
+				66EDE7401A6A2988001519FF /* CoreGraphics.framework */,
 				66EDE73C1A69F8C5001519FF /* QuartzCore.framework */,
 				66EDE73A1A69F8C0001519FF /* CoreBluetooth.framework */,
 				46A119943669CF35F3E18000 /* libPods-clouddoctorapp.a */,

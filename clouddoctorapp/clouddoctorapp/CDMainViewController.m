@@ -9,10 +9,13 @@
 #import "CDMainViewController.h"
 #import "AppDelegate.h"
 
+#import "PulsingHaloLayer.h"
+#import "MultiplePulsingHaloLayer.h"
 
 @interface CDMainViewController ()
 
 @property CWStatusBarNotification *statusBarNotification;
+@property (nonatomic, weak) PulsingHaloLayer *halo;
 
 @end
 
@@ -20,8 +23,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
+    UIColor *cloudDoctorGreen = [UIColor colorWithRed:32.0/255.0
+                                                green:202.0/255.0
+                                                 blue:35.0/255.0
+                                                alpha:1.0];
+    
+    UIColor *cloudDoctorRed = [UIColor colorWithRed:202.0/255.0
+                                              green:35.0/255.0
+                                               blue:32.0/255.0
+                                              alpha:1.0];
+    
+    self.halo = [PulsingHaloLayer layer];
+    self.halo.position = self.statusLabel.center;
+    self.halo.radius = 125.0f;
+    self.halo.animationDuration = 1.5f;
+    self.halo.pulseInterval = -0.5f;
+    self.halo.backgroundColor = cloudDoctorGreen.CGColor;
+    [self.view.layer addSublayer:self.halo];
 }
 
 - (void)didReceiveMemoryWarning {

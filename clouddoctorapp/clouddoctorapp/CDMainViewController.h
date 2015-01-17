@@ -17,8 +17,7 @@
 
 @interface CDMainViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
 
-
-
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
 @property (nonatomic, strong) CBPeripheral     *blendMicroPeripheral;

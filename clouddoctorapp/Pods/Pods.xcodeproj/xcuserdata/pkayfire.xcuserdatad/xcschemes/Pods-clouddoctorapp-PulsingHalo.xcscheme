@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FEEA58FF6342EE256DB15CB5"
-               BuildableName = "libPods-clouddoctorapp-AFNetworking.a"
-               BlueprintName = "Pods-clouddoctorapp-AFNetworking"
+               BlueprintIdentifier = "CD45CE4518A26E6690291B6B"
+               BuildableName = "libPods-clouddoctorapp-PulsingHalo.a"
+               BlueprintName = "Pods-clouddoctorapp-PulsingHalo"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
