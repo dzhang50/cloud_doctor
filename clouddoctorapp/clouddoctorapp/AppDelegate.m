@@ -19,6 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     
     // Initialize Parse
     [Parse setApplicationId:@"8zE5S5Y6vE7cKgmZ3oPO8RfUFp9O63ftN8ugCA3a"

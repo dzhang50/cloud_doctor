@@ -97,7 +97,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="CLOUD DOCTOR" id="yaW-kW-g22"/>
+                    <navigationItem key="navigationItem" title="Cloud Doctor" id="yaW-kW-g22"/>
                     <connections>
                         <outlet property="carbonDioxideLabel" destination="pm1-Pe-oyq" id="Pbq-2Y-bnf"/>
                         <outlet property="ecgLabel" destination="ovX-L4-f4w" id="EEc-rp-tRy"/>
@@ -108,14 +108,14 @@
                         <outlet property="submitButton" destination="xWc-H1-OOs" id="VW4-yk-XpC"/>
                         <outlet property="temperatureLabel" destination="Jgt-aJ-FDV" id="8C8-a2-qcE"/>
                         <outlet property="uploadImageView" destination="23H-AM-zyQ" id="FCf-ek-HaD"/>
-                        <segue destination="t69-wO-ewW" kind="push" id="xYi-8N-HZT"/>
+                        <segue destination="t69-wO-ewW" kind="push" identifier="MainToDiagnosis" id="xYi-8N-HZT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="179" y="356"/>
         </scene>
-        <!--Diagnosis View Controller-->
+        <!--Diag-->
         <scene sceneID="BKF-Bp-OLp">
             <objects>
                 <viewController storyboardIdentifier="CDDiagnosisViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="t69-wO-ewW" customClass="CDDiagnosisViewController" sceneMemberID="viewController">
@@ -126,9 +126,34 @@
                     <view key="view" contentMode="scaleToFill" id="rh9-Ba-quq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aneurysm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOc-QA-5es">
+                                <rect key="frame" x="66" y="26" width="188" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confidence: 82.5% " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmV-ai-nma">
+                                <rect key="frame" x="66" y="50" width="188" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzs-Gu-4Q2">
+                                <rect key="frame" x="15" y="103" width="290" height="256"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
+                                <string key="text">An aneurysm is a bulge or weakness in the wall of a blood vessel.  Aneurysms can enlarge over time and may be life threatening if they rupture. They can occur because of high blood pressure or a weak spot in a blood vessel wall. Aneurysms can occur in arteries in any location in your body. The most common sites include the abdominal aorta and the arteries at the base of the brain.
+</string>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Klp-t4-RLe"/>
+                    <navigationItem key="navigationItem" title="Diag" id="Klp-t4-RLe">
+                        <barButtonItem key="backBarButtonItem" title=" " id="wVN-E9-48R"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rbj-t4-F3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,9 +167,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.79215686269999996" green="0.13725490200000001" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="19.200000762939453"/>
-                            <color key="textColor" red="0.792156862745098" green="0.13725490196078433" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>

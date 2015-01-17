@@ -27,6 +27,7 @@
 
 @implementation CDMainViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -65,12 +66,16 @@
                                   green:32.0/255.0
                                    blue:202.0/255.0
                                   alpha:1.0];
+    
     self.CDYellow = [UIColor colorWithRed:255.0/255.0
                                     green:211.0/255.0
                                      blue:0.0
                                     alpha:1.0];
+    
+    if (!self.halo) {
+        self.halo = [PulsingHaloLayer layer];
+    }
         
-    self.halo = [PulsingHaloLayer layer];
     self.halo.position = self.statusLabel.center;
     self.halo.radius = 125.0f;
     self.halo.animationDuration = 1.5f;
@@ -79,8 +84,8 @@
     [self.view.layer addSublayer:self.halo];
     
     self.statusBarNotification = [CWStatusBarNotification new];
-    self.statusBarNotification.notificationLabelBackgroundColor = self.CDRed;
-    self.statusBarNotification.notificationLabelTextColor = [UIColor whiteColor];
+    self.statusBarNotification.notificationLabelBackgroundColor = [UIColor whiteColor];
+    self.statusBarNotification.notificationLabelTextColor = self.CDRed;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.statusBarNotification displayNotificationWithMessage:@"Cloud Doctor is at your service!" forDuration:3.0f];
@@ -97,7 +102,6 @@
 
 - (void)updateLabelsWithFakeData
 {
-    NSLog(@"updating labels with fake data");
     [self updateLabel:self.hearbeatLabel WithText:[NSString stringWithFormat:@"%d bpm", rand() % (0 - 125) + 0]];
     [self updateLabel:self.temperatureLabel WithText:[NSString stringWithFormat:@"%d°F", rand() % (0 - 125) + 0]];
     [self updateLabel:self.ecgLabel WithText:[NSString stringWithFormat:@"%d.5", rand() % (0 - 100) + 0]];
@@ -134,6 +138,7 @@
 -(void) bleDidConnect
 {
     NSLog(@"bleDidConnect");
+    [self.bleShield write:[@"G" dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 #pragma mark - SKRecognizerDelegate
@@ -165,6 +170,11 @@
             [self.statusBarNotification displayNotificationWithMessage:@"Diagnosing..." completion:nil];
         });
         [self setWaitingMode];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 8 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.statusBarNotification dismissNotification];
+            [self performSegueWithIdentifier:@"MainToDiagnosis" sender:self];
+            [self setNormalMode];
+        });
     }
 }
 
