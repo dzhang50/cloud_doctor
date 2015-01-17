@@ -7,10 +7,12 @@ public class Document implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	public String name;
-	public HashMap<String, Integer> freqs;
+	public Integer numTerms;
+	public HashMap<String, Double> freqs;
 	
 	public Document(String n) {
 		name = n;
-		freqs = new HashMap<String, Integer>();
+		numTerms = null;
+		freqs = new HashMap<String, Double>();
 	}
 }
