@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "CloudDoctor": {
+            "applicationId": "8zE5S5Y6vE7cKgmZ3oPO8RfUFp9O63ftN8ugCA3a", 
+            "masterKey": "AE8ppmaudOqebRbmWJBjTAoaywf67bRHlhQFCgVG"
+        }, 
+        "_default": {
+            "link": "CloudDoctor"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.3"
+    }
+}
