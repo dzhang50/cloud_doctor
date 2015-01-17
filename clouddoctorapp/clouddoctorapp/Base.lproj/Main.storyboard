@@ -92,7 +92,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="carbonDioxideLabel" destination="pm1-Pe-oyq" id="Pbq-2Y-bnf"/>
+                        <outlet property="ecgLabel" destination="ovX-L4-f4w" id="EEc-rp-tRy"/>
+                        <outlet property="hearbeatLabel" destination="ms0-Pg-fXL" id="w6T-LE-GNQ"/>
+                        <outlet property="oxygenLabel" destination="hhi-db-6pO" id="Ew3-uj-5At"/>
                         <outlet property="statusLabel" destination="wqQ-Aw-l7s" id="0M3-NB-0ZG"/>
+                        <outlet property="temperatureLabel" destination="Jgt-aJ-FDV" id="8C8-a2-qcE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

@@ -12,6 +12,9 @@
 #import "PulsingHaloLayer.h"
 #import "MultiplePulsingHaloLayer.h"
 
+#define POLARH7_HRM_DEVICE_INFO_SERVICE_UUID @"placeholder";
+#define POLARH7_HRM_DEVICE_INFO_SERVICE_UUID @"placeholder";
+
 @interface CDMainViewController ()
 
 @property CWStatusBarNotification *statusBarNotification;

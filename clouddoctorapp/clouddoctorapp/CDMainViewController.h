@@ -12,10 +12,13 @@
 
 #import "CWStatusBarNotification.h"
 
-#define POLARH7_HRM_DEVICE_INFO_SERVICE_UUID @"placeholder";
-#define POLARH7_HRM_DEVICE_INFO_SERVICE_UUID @"placeholder";
-
 @interface CDMainViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *hearbeatLabel;
+@property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ecgLabel;
+@property (weak, nonatomic) IBOutlet UILabel *oxygenLabel;
+@property (weak, nonatomic) IBOutlet UILabel *carbonDioxideLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
