@@ -9,6 +9,9 @@
 #import "CDMainViewController.h"
 #import "AppDelegate.h"
 
+#import <Parse/Parse.h>
+#import <Bolts/Bolts.h>
+
 #import "PulsingHaloLayer.h"
 #import "MultiplePulsingHaloLayer.h"
 
