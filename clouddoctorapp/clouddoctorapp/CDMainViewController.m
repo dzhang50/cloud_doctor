@@ -20,9 +20,6 @@
 //@property (strong, nonatomic) SKRecognizer* voiceSearch;
 
 @property (nonatomic, strong) BLE              *bleShield;
-@property (nonatomic, strong) CBCentralManager *centralManager;
-@property (nonatomic, strong) CBPeripheral     *blendMicroPeripheral;
-@property BOOL                                  connected;
 
 @property CWStatusBarNotification            *statusBarNotification;
 @property (nonatomic, weak) PulsingHaloLayer *halo;
@@ -64,6 +61,12 @@
     self.halo.pulseInterval = -0.5f;
     self.halo.backgroundColor = self.CDGreen.CGColor;
     [self.view.layer addSublayer:self.halo];
+    
+    self.statusBarNotification = [CWStatusBarNotification new];
+    self.statusBarNotification.notificationLabelBackgroundColor = self.CDRed;
+    self.statusBarNotification.notificationLabelTextColor = [UIColor whiteColor];
+    
+    [self.statusBarNotification displayNotificationWithMessage:@"Cloud Doctor is at your service!" forDuration:3.0f];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,8 +82,6 @@
     NSString *s = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
     NSLog(@"%@", s);
 }
-
-NSTimer *rssiTimer;
 
 - (void) readRSSITimer:(NSTimer *)timer
 {
