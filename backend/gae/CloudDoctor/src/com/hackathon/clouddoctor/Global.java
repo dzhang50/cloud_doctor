@@ -121,9 +121,9 @@ public class Global {
 		for (Document doc : docs) {
 			Global.cache.put(doc.name, doc);
 
-			System.out.println(doc.name);
+			//System.out.println(doc.name);
 			for (Map.Entry<String, Double> entry : doc.freqs.entrySet()) {
-				System.out.println(entry.getKey() + ": " + entry.getValue());
+				//System.out.println(entry.getKey() + ": " + entry.getValue());
 			}
 		}
 		
@@ -140,6 +140,11 @@ public class Global {
 			}
 			double val = 1.0 + Math.log((double)numDocs/(double)numDocOccurrences);
 			idf.freqs.put(entry.getKey(), val);
+		}
+		
+		System.out.println("IDF:");
+		for(Map.Entry<String, Double> entry : idf.freqs.entrySet()) {
+			System.out.println(entry.getKey() + ": "+entry.getValue());
 		}
 	}
 

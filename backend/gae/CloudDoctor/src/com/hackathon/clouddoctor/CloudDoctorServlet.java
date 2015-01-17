@@ -3,7 +3,10 @@ package com.hackathon.clouddoctor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,50 +21,81 @@ public class CloudDoctorServlet extends HttpServlet {
 
 		String action = req.getParameter("action");
 		String query = req.getParameter("query");
-		if(query != null) {query.trim();}
-		System.out.println("Action: "+action+", query: "+query);
+		if (query != null) {
+			query.trim();
+		}
+		System.out.println("Action: " + action + ", query: " + query);
 
-		if(action.equals("diag")) {
-			System.out.println("Diagnose query = "+query);
-			
-			String cleanQuery = query.replaceAll("[^a-zA-Z ]", "").toLowerCase();
-			
+		if (action.equals("diag")) {
+			System.out.println("Diagnose query = " + query);
+
+			String cleanQuery = query.replaceAll("[^a-zA-Z ]", "")
+					.toLowerCase();
+
 			Stemmer stem = new Stemmer();
 			String stemmedQuery = stem.doStem(cleanQuery);
-			System.out.println("Answer: "+stemmedQuery);
-			List<String> tokens = new ArrayList<String>(Arrays.asList(stemmedQuery.split(" ")));
+			System.out.println("Answer: " + stemmedQuery);
+			List<String> tokens = new ArrayList<String>(
+					Arrays.asList(stemmedQuery.split(" ")));
 			int i = 0;
-			while(i < tokens.size()) {
-				if(tokens.get(i).equals("")) {
+			while (i < tokens.size()) {
+				if (tokens.get(i).equals("")) {
 					tokens.remove(i);
-				}
-				else {
+				} else {
 					i++;
 				}
 			}
-			
+
 			// If this server hasn't built docs yet, build docs
-			if((Global.globalDoc == null) || (Global.docs == null) || (Global.docNames == null)) {
+			if ((Global.globalDoc == null) || (Global.docs == null)
+					|| (Global.docNames == null)) {
 				Global.buildDocs();
 			}
-			
+
 			Document queryDoc = new Document("query");
-			for(String token : tokens) {
-					// System.out.println(token);
-					if (queryDoc.freqs.containsKey(token)) {
-						double val = queryDoc.freqs.get(token);
-						queryDoc.freqs.put(token, val + 1.0);
-					} else {
-						queryDoc.freqs.put(token, 1.0);
-					}
+			for (String token : tokens) {
+				// System.out.println(token);
+				if (queryDoc.freqs.containsKey(token)) {
+					double val = queryDoc.freqs.get(token);
+					queryDoc.freqs.put(token,
+							val + 1.0 / (double) tokens.size());
+				} else {
+					queryDoc.freqs.put(token, 1.0 / (double) tokens.size());
+				}
 			}
-			
-		
-			
+
+			List<Tuple<String, Double>> scores = new ArrayList<Tuple<String, Double>>();
+			int scoreIdx = 0;
+			// System.out.println(entry.getKey() + ": " + entry.getValue());
+			for (Document doc : Global.docs) {
+				double tfidf = 0.0;
+
+				for (Map.Entry<String, Double> entry : queryDoc.freqs
+						.entrySet()) {
+					if (doc.freqs.containsKey(entry.getKey())) {
+						// TODO: Cosine Similarity
+						tfidf += entry.getValue()
+								* doc.freqs.get(entry.getKey());
+					}
+				}
+				scores.add(new Tuple(doc.name, tfidf));
+			}
+
+			Collections.sort(scores, new Comparator<Tuple<String, Double>>() {
+				public int compare(Tuple<String, Double> s1,
+						Tuple<String, Double> s2) {
+					if (s1.second < s2.second)
+						return 1;
+					if (s1.second > s2.second)
+						return -1;
+					return 0;
+				}
+			});
+
 			resp.setContentType("text/plain");
 			resp.getWriter().println(stemmedQuery);
-		}
-		else if(action.equals("build")) {
+			resp.getWriter().println(scores);
+		} else if (action.equals("build")) {
 			try {
 				Global.buildDocs();
 			} catch (Exception e) {
@@ -71,4 +105,3 @@ public class CloudDoctorServlet extends HttpServlet {
 		}
 	}
 }
-
