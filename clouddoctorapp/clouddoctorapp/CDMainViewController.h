@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BLE.h"
+
+//#import <SpeechKit/SpeechKit.h>
+
 @import CoreBluetooth;
 @import QuartzCore;
 
 #import "CWStatusBarNotification.h"
 
-@interface CDMainViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
+#define RBL_SERVICE_UUID @"713d0000-503e-4c75-ba94-3148f18d941e";
+
+@interface CDMainViewController : UIViewController <BLEDelegate>//<CBCentralManagerDelegate, CBPeripheralDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *hearbeatLabel;
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
@@ -21,9 +27,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *carbonDioxideLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
-
-@property (nonatomic, strong) CBCentralManager *centralManager;
-@property (nonatomic, strong) CBPeripheral     *blendMicroPeripheral;
 
 @end
 

@@ -15,12 +15,16 @@
 #import "PulsingHaloLayer.h"
 #import "MultiplePulsingHaloLayer.h"
 
-#define POLARH7_HRM_DEVICE_INFO_SERVICE_UUID @"placeholder";
-#define POLARH7_HRM_DEVICE_INFO_SERVICE_UUID @"placeholder";
-
 @interface CDMainViewController ()
 
-@property CWStatusBarNotification *statusBarNotification;
+//@property (strong, nonatomic) SKRecognizer* voiceSearch;
+
+@property (nonatomic, strong) BLE              *bleShield;
+@property (nonatomic, strong) CBCentralManager *centralManager;
+@property (nonatomic, strong) CBPeripheral     *blendMicroPeripheral;
+@property BOOL                                  connected;
+
+@property CWStatusBarNotification            *statusBarNotification;
 @property (nonatomic, weak) PulsingHaloLayer *halo;
 
 @property UIColor *CDRed;
@@ -33,6 +37,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.bleShield = [[BLE alloc] init];
+    [self.bleShield controlSetup];
+    self.bleShield.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -43,11 +51,6 @@
                                    green:202.0/255.0
                                     blue:35.0/255.0
                                    alpha:1.0];
-    
-    self.CDOrange = [UIColor colorWithRed:32.0/255.0
-                                    green:202.0/255.0
-                                     blue:35.0/255.0
-                                    alpha:1.0];
     
     self.CDRed = [UIColor colorWithRed:202.0/255.0
                                  green:35.0/255.0
@@ -68,45 +71,44 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - CBCentralManagerDelegate
+#pragma mark - BLEDelegate
 
-// method called whenever you have successfully connected to the BLE peripheral
-- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
+-(void) bleDidReceiveData:(unsigned char *)data length:(int)length
 {
+    NSData *d = [NSData dataWithBytes:data length:length];
+    NSString *s = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
+    NSLog(@"%@", s);
 }
 
-// CBCentralManagerDelegate - This is called with the CBPeripheral class as its main input parameter. This contains most of the information there is to know about a BLE peripheral.
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
+NSTimer *rssiTimer;
+
+- (void) readRSSITimer:(NSTimer *)timer
 {
+    [self.bleShield readRSSI];
 }
 
-// method called whenever the device state changes.
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+- (void) bleDidDisconnect
 {
+    NSLog(@"bleDidDisconnect");
 }
 
-#pragma mark - CBPerpipheralDelegate
-
-// CBPeripheralDelegate - Invoked when you discover the peripheral's available services.
-- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
+-(void) bleDidConnect
 {
-    
+    NSLog(@"bleDidConnect");
 }
 
-// Invoked when you discover the characteristics of a specified service.
-- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
-{
-    
-}
+#pragma mark - SKRecognizerDelegate
 
-// Invoked when you retrieve a specified characteristic's value, or when the peripheral device notifies your app that the characteristic's value has changed.
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
-{
-    
-}
-
-#pragma mark - CBCharacteristic helpers
-
-
+//- (void)recognizerDidBeginRecording:(SKRecognizer *)recognizer {
+//    
+//}
+//
+//- (void)recognizerDidFinishRecording:(SKRecognizer *)recognizer {
+//    
+//}
+//
+//- (void)recognizer:(SKRecognizer *)recognizer didFinishWithResults:(SKRecognition *)results {
+//    
+//}
 
 @end
