@@ -13,4 +13,7 @@
 - (void)updateLabel:(UILabel *)label
            WithText:(NSString *)newText;
 
+- (void)activateListeningMode;
+- (void)deactivateListeningMode;
+
 @end

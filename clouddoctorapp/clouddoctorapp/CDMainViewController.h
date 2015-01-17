@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BLE.h"
+#import "PulsingHaloLayer.h"
 
 //#import <SpeechKit/SpeechKit.h>
 
@@ -18,6 +19,8 @@
 
 @interface CDMainViewController : UIViewController <BLEDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *hearbeatLabel;
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ecgLabel;
@@ -25,6 +28,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *carbonDioxideLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *microphoneImageView;
+
+@property (nonatomic, weak) PulsingHaloLayer *halo;
+
+@property UIColor *CDRed;
+@property UIColor *CDGreen;
+@property UIColor *CDBlue;
+
+- (IBAction)handleSubmitSymptoms:(id)sender;
 
 @end
 

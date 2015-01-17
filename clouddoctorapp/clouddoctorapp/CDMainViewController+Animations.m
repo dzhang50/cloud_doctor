@@ -18,4 +18,22 @@
     } completion:nil];
 }
 
+- (void)activateListeningMode
+{
+    [UIView animateWithDuration:0.5f animations:^{
+        [self.statusLabel setAlpha:0.0f];
+        [self.microphoneImageView setAlpha:1.0];
+        self.halo.backgroundColor = self.CDBlue.CGColor;
+    }];
+}
+
+- (void)deactivateListeningMode
+{
+    [UIView animateWithDuration:0.5f animations:^{
+        [self.statusLabel setAlpha:1.0f];
+        [self.microphoneImageView setAlpha:0.0];
+        self.halo.backgroundColor = self.CDGreen.CGColor;
+    }];
+}
+
 @end

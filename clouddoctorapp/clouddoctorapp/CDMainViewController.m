@@ -14,21 +14,12 @@
 #import <Parse/Parse.h>
 #import <Bolts/Bolts.h>
 
-#import "PulsingHaloLayer.h"
-#import "MultiplePulsingHaloLayer.h"
-
 @interface CDMainViewController ()
 
 //@property (strong, nonatomic) SKRecognizer* voiceSearch;
 
-@property (nonatomic, strong) BLE            *bleShield;
-
-@property CWStatusBarNotification            *statusBarNotification;
-@property (nonatomic, weak) PulsingHaloLayer *halo;
-
-@property UIColor *CDRed;
-@property UIColor *CDGreen;
-@property UIColor *CDOrange;
+@property (nonatomic, strong) BLE *bleShield;
+@property CWStatusBarNotification *statusBarNotification;
 
 @end
 
@@ -62,6 +53,11 @@
                                   blue:32.0/255.0
                                  alpha:1.0];
     
+    self.CDBlue = [UIColor colorWithRed:35.0/255.0
+                                  green:32.0/255.0
+                                   blue:202.0/255.0
+                                  alpha:1.0];
+        
     self.halo = [PulsingHaloLayer layer];
     self.halo.position = self.statusLabel.center;
     self.halo.radius = 125.0f;
@@ -132,5 +128,14 @@
 //- (void)recognizer:(SKRecognizer *)recognizer didFinishWithResults:(SKRecognition *)results {
 //    
 //}
+
+#pragma mark - UIButton
+
+- (IBAction)handleSubmitSymptoms:(id)sender {
+    NSLog(@"handleSubmitSymptoms");
+    [self.statusBarNotification displayNotificationWithMessage:@"Listening..." completion:nil];
+    
+    [self activateListeningMode];
+}
 
 @end
