@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AA879347DDF8F8D8A654F30D"
+               BlueprintIdentifier = "C42D2A3ED89069E5A353F0F9"
                BuildableName = "libPods-clouddoctorapp-Parse.a"
                BlueprintName = "Pods-clouddoctorapp-Parse"
                ReferencedContainer = "container:Pods.xcodeproj">
