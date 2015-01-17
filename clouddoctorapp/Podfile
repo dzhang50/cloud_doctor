@@ -5,6 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target "clouddoctorapp" do
 
+pod 'Parse'
 pod 'AFNetworking'
 pod 'CWStatusBarNotification', '~> 2.2.2'
 pod 'PulsingHalo', :git => 'https://github.com/shu223/PulsingHalo.git'

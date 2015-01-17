@@ -20,6 +20,10 @@
 @property CWStatusBarNotification *statusBarNotification;
 @property (nonatomic, weak) PulsingHaloLayer *halo;
 
+@property UIColor *CDRed;
+@property UIColor *CDGreen;
+@property UIColor *CDOrange;
+
 @end
 
 @implementation CDMainViewController
@@ -32,22 +36,27 @@
 {
     [super viewDidAppear:animated];
     
-    UIColor *cloudDoctorGreen = [UIColor colorWithRed:32.0/255.0
-                                                green:202.0/255.0
-                                                 blue:35.0/255.0
-                                                alpha:1.0];
+    self.CDGreen = [UIColor colorWithRed:32.0/255.0
+                                   green:202.0/255.0
+                                    blue:35.0/255.0
+                                   alpha:1.0];
     
-    UIColor *cloudDoctorRed = [UIColor colorWithRed:202.0/255.0
-                                              green:35.0/255.0
-                                               blue:32.0/255.0
-                                              alpha:1.0];
+    self.CDOrange = [UIColor colorWithRed:32.0/255.0
+                                    green:202.0/255.0
+                                     blue:35.0/255.0
+                                    alpha:1.0];
+    
+    self.CDRed = [UIColor colorWithRed:202.0/255.0
+                                 green:35.0/255.0
+                                  blue:32.0/255.0
+                                 alpha:1.0];
     
     self.halo = [PulsingHaloLayer layer];
     self.halo.position = self.statusLabel.center;
     self.halo.radius = 125.0f;
     self.halo.animationDuration = 1.5f;
     self.halo.pulseInterval = -0.5f;
-    self.halo.backgroundColor = cloudDoctorGreen.CGColor;
+    self.halo.backgroundColor = self.CDGreen.CGColor;
     [self.view.layer addSublayer:self.halo];
 }
 
@@ -78,11 +87,13 @@
 // CBPeripheralDelegate - Invoked when you discover the peripheral's available services.
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
+    
 }
 
 // Invoked when you discover the characteristics of a specified service.
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
+    
 }
 
 // Invoked when you retrieve a specified characteristic's value, or when the peripheral device notifies your app that the characteristic's value has changed.

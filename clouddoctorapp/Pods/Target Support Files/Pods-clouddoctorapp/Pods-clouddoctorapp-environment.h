@@ -48,11 +48,23 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
+// Bolts
+#define COCOAPODS_POD_AVAILABLE_Bolts
+#define COCOAPODS_VERSION_MAJOR_Bolts 1
+#define COCOAPODS_VERSION_MINOR_Bolts 1
+#define COCOAPODS_VERSION_PATCH_Bolts 3
+
 // CWStatusBarNotification
 #define COCOAPODS_POD_AVAILABLE_CWStatusBarNotification
 #define COCOAPODS_VERSION_MAJOR_CWStatusBarNotification 2
 #define COCOAPODS_VERSION_MINOR_CWStatusBarNotification 2
 #define COCOAPODS_VERSION_PATCH_CWStatusBarNotification 2
+
+// Parse
+#define COCOAPODS_POD_AVAILABLE_Parse
+#define COCOAPODS_VERSION_MAJOR_Parse 1
+#define COCOAPODS_VERSION_MINOR_Parse 6
+#define COCOAPODS_VERSION_PATCH_Parse 1
 
 // PulsingHalo
 #define COCOAPODS_POD_AVAILABLE_PulsingHalo
