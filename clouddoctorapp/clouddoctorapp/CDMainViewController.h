@@ -7,9 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+@import CoreBluetooth;
+@import QuartzCore;
 
-@interface CDMainViewController : UIViewController
+#import "CWStatusBarNotification.h"
 
+#define POLARH7_HRM_DEVICE_INFO_SERVICE_UUID @"placeholder";
+#define POLARH7_HRM_DEVICE_INFO_SERVICE_UUID @"placeholder";
+
+@interface CDMainViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
+
+
+
+
+@property (nonatomic, strong) CBCentralManager *centralManager;
+@property (nonatomic, strong) CBPeripheral     *blendMicroPeripheral;
 
 @end
 
