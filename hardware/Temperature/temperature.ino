@@ -1,3 +1,5 @@
+#include <Wire.h>
+
 #include <BLE_API.h>
 #include <stdlib.h>
 
@@ -34,7 +36,10 @@ GattService         uartService(uart_base_uuid, uartChars, sizeof(uartChars) / s
 
 static app_timer_id_t                        m_hrs_timer_id;
 
-bool ecg_on = false;
+bool tmp_on = false;
+
+int tmp102Address = 0x48;
+
 void m_uart_rx_handle(void * p_context)
 {   //update characteristic data
     ble.updateCharacteristicValue(rxCharacteristic.getHandle(), rx_buf, rx_buf_num);   
@@ -65,6 +70,19 @@ void disconnectionCallback(void)
     ble.startAdvertising();
 }
 
+int getTemperature(){
+  Wire.requestFrom(tmp102Address,2); 
+
+  byte MSB = Wire.read();
+  byte LSB = Wire.read();
+
+  //it's a 12bit int, using two's compliment for negative
+  int TemperatureSum = ((MSB << 8) | LSB) >> 4; 
+
+  //float celsius = TemperatureSum*0.0625;
+  return TemperatureSum;
+}
+
 void onDataWritten(uint16_t charHandle)
 {	
     uint8_t buf[TXRX_BUF_LEN];
@@ -82,16 +100,16 @@ void onDataWritten(uint16_t charHandle)
           case 'S'  :
           {
             //Stop the ECG reads
-            ecg_on = false;
-            digitalWrite(3, LOW);
+            tmp_on = false;
+            //digitalWrite(3, LOW);
             Serial.println("RXed shutdown");
             break;
           }
           case 'G':
           {
             //Go the ECG reads
-            ecg_on = true;
-            digitalWrite(3, HIGH);
+            tmp_on = true;
+            //digitalWrite(3, HIGH);
             Serial.println("RXed start");
             break;
           }
@@ -102,16 +120,14 @@ void onDataWritten(uint16_t charHandle)
 void setup(void)
 {
       // initialize the serial communication:
-    pinMode(2, INPUT); // Setup for leads off detection LO +
-    pinMode(0, INPUT); // Setup for leads off detection LO -
-    
-    pinMode(3, OUTPUT); //Setup for Shutdown SDN
-    digitalWrite(3, HIGH); //Start with the ECG sensor turned off  
+//    pinMode(2, INPUT); // Setup for leads off detection LO +
+//    pinMode(0, INPUT); // Setup for leads off detection LO -
+//    
     uint32_t err_code = NRF_SUCCESS;
     
     delay(500);
     Serial.begin(9600);
-    
+    Wire.begin();
     Serial.irq_attach(uartCallBack);
     
     ble.init();
@@ -149,7 +165,7 @@ void setup(void)
 void periodicCallback( void * p_context )
 {
     
-  if(!ecg_on)
+  if(!tmp_on)
   {
     return;
   }
@@ -157,28 +173,11 @@ void periodicCallback( void * p_context )
     Serial.println("callback");
   
     if (ble.getGapState().connected) 
-    {
-      Serial.println(digitalRead(0));
-      Serial.println(digitalRead(2));
-    
-      if((digitalRead(0) == 1)||(digitalRead(2) == 1))
-      {
-//        rx_buf[rx_buf_num] = char(digitalRead(0)) + 48;
-//        rx_buf_num++;
-//        rx_buf[rx_buf_num] = char(digitalRead(2)) + 48;
-//        rx_buf_num++;
-        
-        rx_buf[rx_buf_num] = '!';
-        rx_buf_num++; 
-
-      }
-
-      else
-      {
-        int a_val = analogRead(A4);
+    {     
+        int a_val = getTemperature();
         String val = String(a_val, DEC);
-        Serial.println(val.length());
-        
+        Serial.println(val);
+  
         for(int j = 0; j < 4 - val.length(); j++)
         { 
           rx_buf[rx_buf_num] = '0';
@@ -191,6 +190,7 @@ void periodicCallback( void * p_context )
           rx_buf_num++;
         }
         
+        
     }
 
     if(rx_buf_num > 15)
@@ -200,7 +200,7 @@ void periodicCallback( void * p_context )
       memset(rx_buf, 0x00,20);
       rx_state = 0;
     }
-  }
+  
 }
 
 
