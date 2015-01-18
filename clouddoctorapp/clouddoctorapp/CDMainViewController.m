@@ -16,6 +16,9 @@
 #import <Parse/Parse.h>
 #import <Bolts/Bolts.h>
 
+#import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface CDMainViewController ()
 
 @property (strong, nonatomic) SKRecognizer* voiceSearch;
@@ -115,7 +118,7 @@ const unsigned char SpeechKitApplicationKey[] = {
         [self.statusBarNotification displayNotificationWithMessage:@"Order Placed! :)" forDuration:2.0f];
         [self setDeliveryMode];
         
-        [NSTimer scheduledTimerWithTimeInterval:2.5
+        [NSTimer scheduledTimerWithTimeInterval:1.5
                                          target:self
                                        selector:@selector(checkDeliveryStatus)
                                        userInfo:nil
@@ -154,7 +157,32 @@ const unsigned char SpeechKitApplicationKey[] = {
 {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 
-    [CDDeliveryOperationController getDeliveryUpdate:appDelegate.deliveryID];
+    [[CDDeliveryOperationController getDeliveryUpdate:appDelegate.deliveryID] continueWithSuccessBlock:^id(BFTask *task) {
+        NSDictionary *response = (NSDictionary *) task.result;
+        [self updateLabel:self.statusLabel WithText:[response objectForKey:@"status"]];
+    
+        if ([response objectForKey:@"dropoff_eta"] != (id)[NSNull null] ) {
+            NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+            [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+            [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+            NSDate *date = [formatter dateFromString:[response objectForKey:@"dropoff_eta"]];
+            
+            [formatter setTimeZone: [NSTimeZone systemTimeZone]];
+            [formatter setDateFormat:@"h:mm a"];
+            NSString *stringFromDate = [formatter stringFromDate:date];
+
+            [self updateLabel:self.etaLabel WithText:stringFromDate];
+        }
+
+        if ([response objectForKey:@"courier"] != (id)[NSNull null] ) {
+            NSDictionary *courier = (NSDictionary *) [response objectForKey:@"courier"];
+            NSString *courierImageURL = [courier objectForKey:@"img_href"];
+            [self.courierImageView sd_setImageWithURL:[NSURL URLWithString:courierImageURL] placeholderImage:[UIImage imageNamed:@"courier"]];
+            [self updateLabel:self.courierNameLabel WithText:[courier objectForKey:@"name"]];
+        }
+        
+        return nil;
+    }];
 }
 
 #pragma mark - CorePlot

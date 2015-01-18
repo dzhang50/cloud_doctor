@@ -42,6 +42,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *oxygenIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *carbonIcon;
 
+@property (weak, nonatomic) IBOutlet UILabel *deliveryTitleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *courierImageView;
+@property (weak, nonatomic) IBOutlet UILabel *courierNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *etaTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *etaLabel;
+
 @property (nonatomic, weak) PulsingHaloLayer *halo;
 
 @property UIColor *CDRed;

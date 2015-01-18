@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Bolts/Bolts.h>
 
 @interface CDSensorOperationController : NSObject
 

@@ -33,7 +33,7 @@
         self.statusLabel.text = @"all vitals normal";
     } completion:nil];
     
-    self.symptomsTextView.text = @"";
+    [self.symptomsTextView setText:@""];
 }
 
 - (void)setAlertMode
@@ -94,6 +94,13 @@
         [self.oxygenLabel setAlpha:0];
         [self.carbonIcon setAlpha:0];
         [self.carbonDioxideLabel setAlpha:0];
+        
+        [self.deliveryTitleLabel setAlpha:1];
+        [self.courierImageView setAlpha:1];
+        [self.courierNameLabel setAlpha:1];
+        [self.etaTitleLabel setAlpha:1];
+        [self.etaLabel setAlpha:1];
+        
         self.halo.backgroundColor = self.CDOrange.CGColor;
     }];
     
