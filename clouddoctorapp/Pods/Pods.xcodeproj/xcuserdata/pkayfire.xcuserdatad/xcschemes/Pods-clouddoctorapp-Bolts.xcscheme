@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "58779C10A53D488687C62581"
+               BlueprintIdentifier = "C6EF599F40EC3EC6A0E6C260"
                BuildableName = "libPods-clouddoctorapp-Bolts.a"
                BlueprintName = "Pods-clouddoctorapp-Bolts"
                ReferencedContainer = "container:Pods.xcodeproj">
