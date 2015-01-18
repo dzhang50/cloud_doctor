@@ -8,6 +8,7 @@
 
 #import "CDDiagnosisViewController.h"
 
+#import "DeliveryOperationController.h"
 #import "CWStatusBarNotification.h"
 
 @interface CDDiagnosisViewController ()
@@ -30,6 +31,7 @@
                                                                             green:35.0/255.0
                                                                              blue:32.0/255.0
                                                                             alpha:1.0];
+    [DeliveryOperationController getDeliveryQuote];
 }
 
 - (void)viewDidAppear:(BOOL)animated

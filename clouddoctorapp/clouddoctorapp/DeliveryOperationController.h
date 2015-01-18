@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Bolts/Bolts.h>
 
 @interface DeliveryOperationController : NSObject
+
++ (BFTask *)getDeliveryQuote;
 
 @end
