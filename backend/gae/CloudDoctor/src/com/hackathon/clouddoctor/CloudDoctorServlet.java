@@ -109,7 +109,7 @@ public class CloudDoctorServlet extends HttpServlet {
 				for (Map.Entry<String, Double> entry : queryDoc.freqs.entrySet()) {
 					if (doc.freqs.containsKey(entry.getKey())) {
 						// TODO: Cosine Similarity
-						tfidf += entry.getValue() * doc.freqs.get(entry.getKey());
+						tfidf += (entry.getValue() * (doc.freqs.get(entry.getKey()) * Global.idf.freqs.get(entry.getKey())));
 						breakdown.add(new Tuple(entry.getKey(), entry.getValue() * doc.freqs.get(entry.getKey())));
 					}
 				}
