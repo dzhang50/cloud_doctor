@@ -10,4 +10,8 @@
 
 @interface CDDiagnosisViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *orderMedicationButton;
+
+- (IBAction)handleOrderMedication:(id)sender;
+
 @end

@@ -24,7 +24,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *hearbeatLabel;
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ecgLabel;
 @property (weak, nonatomic) IBOutlet UILabel *oxygenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carbonDioxideLabel;
 
