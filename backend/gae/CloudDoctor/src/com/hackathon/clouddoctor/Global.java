@@ -33,7 +33,7 @@ public class Global {
 
 		File folder = new File("diseases/");
 		File[] listOfFiles = folder.listFiles();
-		globalDoc = new Document("global");
+		globalDoc = new Document("global", "");
 		docs = new ArrayList<Document>();
 		docNames = new ArrayList<String>();
 		docNames.add("global");
@@ -55,11 +55,13 @@ public class Global {
 				String line;
 
 				String diseaseName = "";
+				String treatment = "";
 				String desc = "";
 				try {
 					diseaseName = fileReader.readLine();
+					treatment = fileReader.readLine();
 					System.out.println("Disease: " + diseaseName + "\n");
-					docs.add(new Document(diseaseName.trim()));
+					docs.add(new Document(diseaseName.trim(), treatment.trim()));
 
 					while ((line = fileReader.readLine()) != null) {
 						// System.out.println(line.trim());
@@ -98,9 +100,9 @@ public class Global {
 					// Calculate normalized term frequency per document
 					if (docs.get(docIdx).freqs.containsKey(token)) {
 						double val = docs.get(docIdx).freqs.get(token);
-						docs.get(docIdx).freqs.put(token, val + 1.0/(double)tokens.size());
+						docs.get(docIdx).freqs.put(token, val + 1.0);
 					} else {
-						docs.get(docIdx).freqs.put(token, 1.0/(double)tokens.size());
+						docs.get(docIdx).freqs.put(token, 1.0);
 					}
 				}
 				docIdx++;
@@ -115,7 +117,7 @@ public class Global {
 		
 		System.out.println("Global");
 		for (Map.Entry<String, Double> entry : globalDoc.freqs.entrySet()) {
-			System.out.println(entry.getKey() + " : " + entry.getValue());
+			//System.out.println(entry.getKey() + " : " + entry.getValue());
 		}
 
 		for (Document doc : docs) {
@@ -128,14 +130,14 @@ public class Global {
 		}
 		
 		// Calculate inverse document frequency
-		idf = new Document("idf");
+		idf = new Document("idf", "");
 		
 		int numDocs = docs.size();
 		for(Map.Entry<String, Double> entry : globalDoc.freqs.entrySet()) {
 			int numDocOccurrences = 0;
 			for(Document doc : docs) {
 				if(doc.freqs.containsKey(entry.getKey())) {
-					numDocOccurrences++;
+					numDocOccurrences+= 1;
 				}
 			}
 			double val = 1.0 + Math.log((double)numDocs/(double)numDocOccurrences);

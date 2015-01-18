@@ -87,7 +87,7 @@ public class CloudDoctorServlet extends HttpServlet {
 				Global.buildDocs();
 			}
 
-			Document queryDoc = new Document("query");
+			Document queryDoc = new Document("query", "");
 			for (String token : tokens) {
 				// System.out.println(token);
 				if (queryDoc.freqs.containsKey(token)) {
@@ -99,31 +99,34 @@ public class CloudDoctorServlet extends HttpServlet {
 				}
 			}
 
-			List<Tuple<String, Double>> scores = new ArrayList<Tuple<String, Double>>();
+			List<Triple<String, String, Double>> scores = new ArrayList<Triple<String, String, Double>>();
 			ArrayList<ArrayList<Tuple<String, Double>>> individualScores = new ArrayList<ArrayList<Tuple<String, Double>>>();
 			int scoreIdx = 0;
 			// System.out.println(entry.getKey() + ": " + entry.getValue());
 			for (Document doc : Global.docs) {
+				if(doc.name.equals("")) {
+					continue;
+				}
 				double tfidf = 0.0;
 				ArrayList<Tuple<String, Double>> breakdown = new ArrayList<Tuple<String, Double>>();
 				for (Map.Entry<String, Double> entry : queryDoc.freqs.entrySet()) {
 					if (doc.freqs.containsKey(entry.getKey())) {
 						// TODO: Cosine Similarity
-						tfidf += (entry.getValue() * (doc.freqs.get(entry.getKey()) * Global.idf.freqs.get(entry.getKey())));
+						tfidf += (entry.getValue() * (doc.freqs.get(entry.getKey()) * Global.idf.freqs.get(entry.getKey()) * (1.0/Global.globalDoc.freqs.get(entry.getKey()))));
 						breakdown.add(new Tuple(entry.getKey(), entry.getValue() * doc.freqs.get(entry.getKey())));
 					}
 				}
-				scores.add(new Tuple(doc.name, tfidf));
+				scores.add(new Triple<String, String, Double>(doc.name, doc.treatment, tfidf));
 				individualScores.add(breakdown);
 			}
 			
-			List<Tuple<String, Double>> sortedScores = new ArrayList<Tuple<String, Double>>(scores);
-			Collections.sort(sortedScores, new Comparator<Tuple<String, Double>>() {
-				public int compare(Tuple<String, Double> s1,
-						Tuple<String, Double> s2) {
-					if (s1.second < s2.second)
+			List<Triple<String, String, Double>> sortedScores = new ArrayList<Triple<String, String, Double>>(scores);
+			Collections.sort(sortedScores, new Comparator<Triple<String, String, Double>>() {
+				public int compare(Triple<String, String, Double> s1,
+						Triple<String, String, Double> s2) {
+					if (s1.third < s2.third)
 						return 1;
-					if (s1.second > s2.second)
+					if (s1.third > s2.third)
 						return -1;
 					return 0;
 				}
@@ -133,8 +136,8 @@ public class CloudDoctorServlet extends HttpServlet {
 			//resp.getWriter().println(scores);
 			//resp.getWriter().println(individualScores);
 			
-			for(Tuple<String, Double> entry : sortedScores) {
-				diagnostics.add(new Diagnostic(entry.first, "", entry.second*10));
+			for(Triple<String, String, Double> entry : sortedScores) {
+				diagnostics.add(new Diagnostic(entry.first, entry.second, entry.third));
 			}
 			Gson gson = new GsonBuilder().create();
             String json = gson.toJson(diagnostics);
