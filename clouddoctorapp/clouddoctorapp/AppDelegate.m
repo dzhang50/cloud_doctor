@@ -19,8 +19,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     // Override point for customization after application launch.
+    
+    UIUserNotificationSettings *settings =
+    [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert |
+     UIUserNotificationTypeBadge |
+     UIUserNotificationTypeSound categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     
 //    NSArray *familyNames = [[NSArray alloc] initWithArray:[UIFont familyNames]];
@@ -43,6 +50,16 @@
                   clientKey:@"wA7CU4hqbVKzBWJpL0fWm5EkGowfbA27WVfLCk4B"];
     
     return YES;
+}
+
+- (void)sendAlertNotification
+{
+    NSLog(@"here!");
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.alertBody = [NSString stringWithFormat:@"Vital anomaly detected. Swipe to diagnose!"];
+    notification.soundName = @"Default";
+    
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 - (void)setupSpeechKitConnection {
@@ -70,6 +87,13 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    UIBackgroundTaskIdentifier bgTask = UIBackgroundTaskInvalid;
+    UIApplication *app = [UIApplication sharedApplication];
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        [app endBackgroundTask:bgTask];
+    }];
+    NSTimer  *timer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(sendAlertNotification) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

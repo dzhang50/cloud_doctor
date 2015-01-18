@@ -32,6 +32,7 @@
 @property NSMutableDictionary *sensorData;
 
 @property BOOL inAlertMode;
+@property BOOL sentCourierNotification;
 
 @end
 
@@ -94,7 +95,7 @@ const unsigned char SpeechKitApplicationKey[] = {
                                    userInfo:nil
                                     repeats:YES];
     
-    [NSTimer scheduledTimerWithTimeInterval:5.0
+    [NSTimer scheduledTimerWithTimeInterval:2.5
                                      target:self
                                    selector:@selector(simulateFakeAlert)
                                    userInfo:nil
@@ -178,6 +179,10 @@ const unsigned char SpeechKitApplicationKey[] = {
         }
 
         if ([response objectForKey:@"courier"] != (id)[NSNull null] ) {
+            if (!self.sentCourierNotification) {
+                [self.statusBarNotification displayNotificationWithMessage:@"🏃 Courier Found! 🏃" forDuration:3.0f];
+                self.sentCourierNotification = true;
+            }
             NSDictionary *courier = (NSDictionary *) [response objectForKey:@"courier"];
             NSString *courierImageURL = [courier objectForKey:@"img_href"];
             [self.courierImageView sd_setImageWithURL:[NSURL URLWithString:courierImageURL] placeholderImage:[UIImage imageNamed:@"courier"]];
@@ -310,6 +315,26 @@ const unsigned char SpeechKitApplicationKey[] = {
         self.symptomsTextView.textAlignment = NSTextAlignmentCenter;
         self.symptomsTextView.font = [UIFont fontWithName:@"Avenir-Light" size:11.0f];
         
+        [self.statusBarNotification displayNotificationWithMessage:@"🚀 Diagnosing 🚀" completion:nil];
+        [self setWaitingMode];
+        
+        // Dummy sensor data
+        if (!self.sensorData) {
+            self.sensorData = [[NSMutableDictionary alloc] init];
+            [self.sensorData setObject:@"99" forKey:@"temp"];
+            [self.sensorData setObject:@"21" forKey:@"resprate"];
+            [self.sensorData setObject:@"120" forKey:@"heartrate"];
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [[CDSensorOperationController getDiagnosisWithSensorData:self.sensorData andSymptoms:[results firstResult]] continueWithSuccessBlock:^id(BFTask *task) {
+                [self.statusBarNotification dismissNotification];
+                [self performSegueWithIdentifier:@"MainToDiagnosis" sender:self];
+                [self setNormalMode];
+                return nil;
+            }];
+        });
+    } else {
         [self.statusBarNotification displayNotificationWithMessage:@"🚀 Diagnosing 🚀" completion:nil];
         [self setWaitingMode];
         
