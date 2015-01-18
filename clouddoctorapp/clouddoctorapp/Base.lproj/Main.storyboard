@@ -194,13 +194,13 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYp-ta-Noz">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYp-ta-Noz">
                                 <rect key="frame" x="58" y="400" width="60" height="46"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="21"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-0W-0fh">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-0W-0fh">
                                 <rect key="frame" x="206" y="400" width="60" height="46"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="21"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -213,6 +213,12 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="wVN-E9-48R"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="confidenceLabel" destination="MmV-ai-nma" id="aIN-4f-Tzv"/>
+                        <outlet property="deliveryFeeLabel" destination="yYp-ta-Noz" id="ssq-pV-DT4"/>
+                        <outlet property="deliveryTimeLabel" destination="QAX-0W-0fh" id="t0P-Xj-g3R"/>
+                        <outlet property="illnessDescription" destination="uzs-Gu-4Q2" id="vEa-9l-RU3"/>
+                        <outlet property="illnessLabel" destination="UOc-QA-5es" id="IlP-gn-T95"/>
+                        <outlet property="medicationLabel" destination="Ij8-iu-7oq" id="X0h-Ki-LTb"/>
                         <outlet property="orderMedicationButton" destination="GRA-SB-LbA" id="INZ-TI-4bc"/>
                     </connections>
                 </viewController>

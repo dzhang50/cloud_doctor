@@ -37,32 +37,6 @@ const unsigned char SpeechKitApplicationKey[] = {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.bleShield = [[BLE alloc] init];
-    [self.bleShield controlSetup];
-    self.bleShield.delegate = self;
-    
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate setupSpeechKitConnection];
-    
-    [NSTimer scheduledTimerWithTimeInterval:1.0
-                                     target:self
-                                   selector:@selector(updateLabelsWithFakeData)
-                                   userInfo:nil
-                                    repeats:YES];
-    
-    [NSTimer scheduledTimerWithTimeInterval:5.0
-                                     target:self
-                                   selector:@selector(simulateFakeAlert)
-                                   userInfo:nil
-                                    repeats:NO];
-    
-    [self setUpECGGraph];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
     self.CDGreen = [UIColor colorWithRed:32.0/255.0
                                    green:202.0/255.0
                                     blue:35.0/255.0
@@ -83,6 +57,40 @@ const unsigned char SpeechKitApplicationKey[] = {
                                      blue:0.0
                                     alpha:1.0];
     
+    self.bleShield = [[BLE alloc] init];
+    [self.bleShield controlSetup];
+    self.bleShield.delegate = self;
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate setupSpeechKitConnection];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self
+                                   selector:@selector(updateLabelsWithFakeData)
+                                   userInfo:nil
+                                    repeats:YES];
+    
+    [NSTimer scheduledTimerWithTimeInterval:5.0
+                                     target:self
+                                   selector:@selector(simulateFakeAlert)
+                                   userInfo:nil
+                                    repeats:NO];
+    
+    [self setUpECGGraph];
+    
+    self.statusBarNotification = [CWStatusBarNotification new];
+    self.statusBarNotification.notificationLabelBackgroundColor = [UIColor whiteColor];
+    self.statusBarNotification.notificationLabelTextColor = self.CDRed;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.statusBarNotification displayNotificationWithMessage:@"💉 Dr.Cloud is at your service! 💊" forDuration:3.0f];
+    });
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
     if (!self.halo) {
         self.halo = [PulsingHaloLayer layer];
     }
@@ -93,14 +101,6 @@ const unsigned char SpeechKitApplicationKey[] = {
     self.halo.pulseInterval = -0.5f;
     self.halo.backgroundColor = self.CDGreen.CGColor;
     [self.view.layer addSublayer:self.halo];
-    
-    self.statusBarNotification = [CWStatusBarNotification new];
-    self.statusBarNotification.notificationLabelBackgroundColor = [UIColor whiteColor];
-    self.statusBarNotification.notificationLabelTextColor = self.CDRed;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.statusBarNotification displayNotificationWithMessage:@"💉 Dr.Cloud is at your service! 💊" forDuration:3.0f];
-    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -115,7 +115,6 @@ const unsigned char SpeechKitApplicationKey[] = {
 {
     [self updateLabel:self.hearbeatLabel WithText:[NSString stringWithFormat:@"%d bpm", rand() % (0 - 125) + 0]];
     [self updateLabel:self.temperatureLabel WithText:[NSString stringWithFormat:@"%d°F", rand() % (0 - 125) + 0]];
-    [self updateLabel:self.ecgLabel WithText:[NSString stringWithFormat:@"%d.5", rand() % (0 - 100) + 0]];
     [self updateLabel:self.oxygenLabel WithText:[NSString stringWithFormat:@"%d%%", rand() % (0 - 100) + 0]];
     [self updateLabel:self.carbonDioxideLabel WithText:[NSString stringWithFormat:@"%d%%", rand() % (0 - 100) + 0]];
     
@@ -272,7 +271,7 @@ const unsigned char SpeechKitApplicationKey[] = {
             [self.statusBarNotification displayNotificationWithMessage:@"🚀 Diagnosing 🚀" completion:nil];
         });
         [self setWaitingMode];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 8 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self.statusBarNotification dismissNotification];
             [self performSegueWithIdentifier:@"MainToDiagnosis" sender:self];
             [self setNormalMode];

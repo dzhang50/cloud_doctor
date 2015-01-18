@@ -7,6 +7,7 @@
 //
 
 #import "CDDiagnosisViewController.h"
+#import "CDDiagnosisViewController+Animations.h"
 
 #import "DeliveryOperationController.h"
 #import "CWStatusBarNotification.h"
@@ -14,6 +15,8 @@
 @interface CDDiagnosisViewController ()
 
 @property CWStatusBarNotification *statusBarNotification;
+
+@property NSString *deliveryQuoteID;
 
 @end
 
@@ -31,13 +34,23 @@
                                                                             green:35.0/255.0
                                                                              blue:32.0/255.0
                                                                             alpha:1.0];
-    [DeliveryOperationController getDeliveryQuote];
+    
+    [[DeliveryOperationController getDeliveryQuote] continueWithSuccessBlock:^id(BFTask *task) {
+        NSDictionary *response = (NSDictionary *) task.result;
+        NSString *deliveryFee = [NSString stringWithFormat:@"%@", [response objectForKey:@"fee"]];
+        NSString *deliveryTime = [NSString stringWithFormat:@"%@", [response objectForKey:@"duration"]];
+        self.deliveryQuoteID = [response objectForKey:@"id"];
+
+        [self setDeliveryFee:deliveryFee andDeliveryTime:deliveryTime];
+        
+        return nil;
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.statusBarNotification displayNotificationWithMessage:@"💉 Thanks for using Dr.Cloud! 💊" forDuration:3.0f];
+        [self.statusBarNotification displayNotificationWithMessage:@"💉 Thanks for using Dr.Cloud! 💊" forDuration:2.0f];
     });
 }
 
@@ -57,5 +70,15 @@
 */
 
 - (IBAction)handleOrderMedication:(id)sender {
+    [self.statusBarNotification displayNotificationWithMessage:@"Ordering Medication via Postmates!" forDuration:2.0f];
+    
+    if (self.deliveryQuoteID) {
+        [[DeliveryOperationController scheduleDelivery:self.deliveryQuoteID withNotes:@"Tylenol"] continueWithSuccessBlock:^id(BFTask *task) {
+            [self.statusBarNotification displayNotificationWithMessage:@"Order Placed! :)" forDuration:2.0f];
+            [self.navigationController popViewControllerAnimated:YES];
+            return nil;
+        }];
+    }
+    
 }
 @end

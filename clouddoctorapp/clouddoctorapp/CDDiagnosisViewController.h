@@ -10,6 +10,13 @@
 
 @interface CDDiagnosisViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *illnessLabel;
+@property (weak, nonatomic) IBOutlet UILabel *confidenceLabel;
+@property (weak, nonatomic) IBOutlet UITextView *illnessDescription;
+@property (weak, nonatomic) IBOutlet UILabel *medicationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *deliveryFeeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *orderMedicationButton;
 
 - (IBAction)handleOrderMedication:(id)sender;

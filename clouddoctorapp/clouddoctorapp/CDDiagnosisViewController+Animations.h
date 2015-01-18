@@ -10,4 +10,7 @@
 
 @interface CDDiagnosisViewController (Animations)
 
+- (void)setDeliveryFee:(NSString *)deliveryFee
+       andDeliveryTime:(NSString *)deliveryTime;
+
 @end
