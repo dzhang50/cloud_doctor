@@ -82,6 +82,24 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Postmates Delivery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46N-AM-ijq" userLabel="Delivery Title">
+                                <rect key="frame" x="0.0" y="15" width="320" height="32"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="23"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ETA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jyc-MK-agJ" userLabel="ETA Label">
+                                <rect key="frame" x="-1" y="182" width="320" height="32"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="23"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYr-eu-KTw" userLabel="Courier Name">
+                                <rect key="frame" x="0.0" y="137" width="320" height="32"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleAspectFit" fixedFrame="YES" image="microphone" translatesAutoresizingMaskIntoConstraints="NO" id="g6F-K3-4fN">
                                 <rect key="frame" x="110" y="297" width="100" height="100"/>
                             </imageView>
@@ -98,12 +116,15 @@
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Postmates Delivery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46N-AM-ijq" userLabel="Delivery Title">
-                                <rect key="frame" x="0.0" y="9" width="320" height="32"/>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDP-LW-PhU" userLabel="ETA ">
+                                <rect key="frame" x="-1" y="225" width="320" height="32"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleAspectFit" fixedFrame="YES" image="courier" translatesAutoresizingMaskIntoConstraints="NO" id="Xtz-8g-r1S">
+                                <rect key="frame" x="119" y="53" width="80" height="80"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -111,8 +132,13 @@
                     <connections>
                         <outlet property="carbonDioxideLabel" destination="pm1-Pe-oyq" id="Pbq-2Y-bnf"/>
                         <outlet property="carbonIcon" destination="2sy-5Z-CXv" id="n95-9M-vQ2"/>
+                        <outlet property="courierImageView" destination="Xtz-8g-r1S" id="gPX-xP-sDn"/>
+                        <outlet property="courierNameLabel" destination="iYr-eu-KTw" id="61F-v3-w8c"/>
+                        <outlet property="deliveryTitleLabel" destination="46N-AM-ijq" id="p3h-PZ-7mL"/>
                         <outlet property="ecgGraphHostingView" destination="Bin-aF-766" id="OKM-RE-Rwz"/>
                         <outlet property="ecgIcon" destination="tNX-lg-jzz" id="nRr-48-2G4"/>
+                        <outlet property="etaLabel" destination="iDP-LW-PhU" id="E9o-WQ-fZd"/>
+                        <outlet property="etaTitleLabel" destination="Jyc-MK-agJ" id="DPO-Kf-8bO"/>
                         <outlet property="hearbeatIcon" destination="NQ9-u4-apu" id="UAj-ol-DTh"/>
                         <outlet property="hearbeatLabel" destination="ms0-Pg-fXL" id="w6T-LE-GNQ"/>
                         <outlet property="microphoneImageView" destination="g6F-K3-4fN" id="7jN-Va-ccj"/>
@@ -143,34 +169,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzs-Gu-4Q2">
-                                <rect key="frame" x="15" y="64" width="290" height="256"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
-                                <string key="text">Fever is also known as hyperthermia, pyrexia, or simply elevated temperature. It describes a body temperature that is higher than normal. According to the National Institutes of Health (NIH), a child has a fever when a temperature taken orally is higher than 99.5 degrees F, or 37.5 degrees C. An adult likely has a fever when body temperature exceeds 99 to 99.5 degrees F, or 37.2 to 37.5 degrees C. </string>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fever" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOc-QA-5es" userLabel="Illness Label">
-                                <rect key="frame" x="66" y="8" width="188" height="36"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Suggested Medication" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5i-sp-qku" userLabel="Medication Label">
-                                <rect key="frame" x="52" y="277" width="216" height="36"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tylenol" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij8-iu-7oq" userLabel="Medication Label">
-                                <rect key="frame" x="52" y="321" width="216" height="36"/>
+                                <rect key="frame" x="66" y="107" width="188" height="36"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="22"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Suggested Medication" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5i-sp-qku" userLabel="Medication Label">
+                                <rect key="frame" x="52" y="213" width="216" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Diagnosed Illness" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2q-82-sK2" userLabel="Medication Label">
+                                <rect key="frame" x="52" y="43" width="216" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confidence: 82.5% " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmV-ai-nma" userLabel="Confidence Label">
-                                <rect key="frame" x="66" y="32" width="188" height="36"/>
+                                <rect key="frame" x="66" y="138" width="188" height="36"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -194,26 +212,32 @@
                                 <color key="tintColor" red="0.79215686269999996" green="0.13725490200000001" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delivery Fee:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evt-54-dEK">
-                                <rect key="frame" x="41" y="374" width="109" height="24"/>
+                                <rect key="frame" x="37" y="330" width="109" height="24"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delivery Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDJ-Dg-S8K">
-                                <rect key="frame" x="182" y="375" width="109" height="21"/>
+                                <rect key="frame" x="178" y="331" width="109" height="21"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYp-ta-Noz">
-                                <rect key="frame" x="58" y="400" width="60" height="46"/>
+                                <rect key="frame" x="54" y="375" width="60" height="46"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="21"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-0W-0fh">
-                                <rect key="frame" x="206" y="400" width="60" height="46"/>
+                                <rect key="frame" x="202" y="375" width="60" height="46"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tylenol" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij8-iu-7oq" userLabel="Medication Label">
+                                <rect key="frame" x="52" y="269" width="216" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="22"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -227,7 +251,6 @@
                         <outlet property="confidenceLabel" destination="MmV-ai-nma" id="aIN-4f-Tzv"/>
                         <outlet property="deliveryFeeLabel" destination="yYp-ta-Noz" id="ssq-pV-DT4"/>
                         <outlet property="deliveryTimeLabel" destination="QAX-0W-0fh" id="t0P-Xj-g3R"/>
-                        <outlet property="illnessDescription" destination="uzs-Gu-4Q2" id="vEa-9l-RU3"/>
                         <outlet property="illnessLabel" destination="UOc-QA-5es" id="IlP-gn-T95"/>
                         <outlet property="medicationLabel" destination="Ij8-iu-7oq" id="X0h-Ki-LTb"/>
                         <outlet property="orderMedicationButton" destination="GRA-SB-LbA" id="INZ-TI-4bc"/>
@@ -263,6 +286,7 @@
     </scenes>
     <resources>
         <image name="carbon_monoxide" width="166" height="166"/>
+        <image name="courier" width="250" height="250"/>
         <image name="heartbeat" width="166" height="166"/>
         <image name="microphone" width="250" height="250"/>
         <image name="oxygen" width="166" height="166"/>
