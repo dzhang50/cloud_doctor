@@ -36,12 +36,19 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *symptomsTextView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *hearbeatIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *temperatureIcon;
+@property (weak, nonatomic) IBOutlet UILabel *ecgIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *oxygenIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *carbonIcon;
+
 @property (nonatomic, weak) PulsingHaloLayer *halo;
 
 @property UIColor *CDRed;
 @property UIColor *CDGreen;
 @property UIColor *CDBlue;
 @property UIColor *CDYellow;
+@property UIColor *CDOrange;
 
 - (IBAction)handleSubmitSymptoms:(id)sender;
 

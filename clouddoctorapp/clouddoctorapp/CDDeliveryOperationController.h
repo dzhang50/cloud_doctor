@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Bolts/Bolts.h>
 
-@interface DeliveryOperationController : NSObject
+@interface CDDeliveryOperationController : NSObject
 
 + (BFTask *)getDeliveryQuote;
 + (BFTask *)scheduleDelivery:(NSString *)quoteID

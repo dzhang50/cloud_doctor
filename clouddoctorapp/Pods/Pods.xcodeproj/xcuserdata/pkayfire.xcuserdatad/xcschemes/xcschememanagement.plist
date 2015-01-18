@@ -34,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-clouddoctorapp-SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-clouddoctorapp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,37 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>05F66697390EB421003A78E5</key>
+		<key>2078BF2EF98C8A36A9DBFCE7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>143FBF2BB47171D729ABACAA</key>
+		<key>4D839A553B0F9189AD81C284</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>463FA89C7F456C568E53BA8C</key>
+		<key>ACF467B1F734889C11ED59E0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>58779C10A53D488687C62581</key>
+		<key>C0813A77ED59962AE5739FCF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>938CE95A539D1F545CE71934</key>
+		<key>C2383488B80437B2D3EA85AB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A371581F2F9FF1B2FFE7FB1A</key>
+		<key>C6EF599F40EC3EC6A0E6C260</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C42D2A3ED89069E5A353F0F9</key>
+		<key>DE2D3DB51C62F36D6BD7D1DB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EDC637245C3348E52DEA3EB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
