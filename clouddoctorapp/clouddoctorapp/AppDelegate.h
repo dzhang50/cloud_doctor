@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property BOOL inDeliveryMode;
 @property NSString *deliveryID;
+@property NSDictionary *diagnosis;
 
 - (void)setupSpeechKitConnection;
 

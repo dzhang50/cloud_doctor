@@ -22,8 +22,6 @@ NSString * const POSTMATES_API_CUSTOMER_ID = @"cus_J_LfHamn2SN7nV";
 
 + (BFTask *)getDeliveryQuote
 {
-    NSLog(@"getting delivery quote");
-    
     BFTaskCompletionSource *getDeliveryQuotePromise = [BFTaskCompletionSource taskCompletionSource];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

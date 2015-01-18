@@ -11,4 +11,7 @@
 
 @interface CDSensorOperationController : NSObject
 
++ (BFTask *)getDiagnosisWithSensorData:(NSMutableDictionary *)sensorData
+                           andSymptoms:(NSString *)symptoms;
+
 @end

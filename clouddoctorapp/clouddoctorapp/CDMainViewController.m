@@ -10,6 +10,7 @@
 #import "CDMainViewController+Animations.h"
 
 #import "CDDeliveryOperationController.h"
+#import "CDSensorOperationController.h"
 
 #import "AppDelegate.h"
 
@@ -27,6 +28,8 @@
 
 @property (nonatomic, strong) BLE *bleShield;
 @property CWStatusBarNotification *statusBarNotification;
+
+@property NSMutableDictionary *sensorData;
 
 @property BOOL inAlertMode;
 
@@ -137,10 +140,10 @@ const unsigned char SpeechKitApplicationKey[] = {
 
 - (void)updateLabelsWithFakeData
 {
-    [self updateLabel:self.hearbeatLabel WithText:[NSString stringWithFormat:@"%d bpm", rand() % (0 - 125) + 0]];
-    [self updateLabel:self.temperatureLabel WithText:[NSString stringWithFormat:@"%d°F", rand() % (0 - 125) + 0]];
-    [self updateLabel:self.oxygenLabel WithText:[NSString stringWithFormat:@"%d%%", rand() % (0 - 100) + 0]];
-    [self updateLabel:self.carbonDioxideLabel WithText:[NSString stringWithFormat:@"%d%%", rand() % (0 - 100) + 0]];
+    [self updateLabel:self.hearbeatLabel WithText:[NSString stringWithFormat:@"%d bpm", rand() % (80 - 90) + 80]];
+    [self updateLabel:self.temperatureLabel WithText:[NSString stringWithFormat:@"%d.%d°F", rand() % (100 - 101) + 100, rand() % (2 - 9) + 2]];
+    [self updateLabel:self.oxygenLabel WithText:[NSString stringWithFormat:@"%d.%d%%", rand() % (95 - 97) + 95, rand() % (0 - 9) + 0]];
+    [self updateLabel:self.carbonDioxideLabel WithText:[NSString stringWithFormat:@"%d.%dppm", rand() % (34 - 35) + 34, rand() % (0 - 9) + 0]];
     
     [self.ecgGraph reloadData];
 }
@@ -242,7 +245,17 @@ const unsigned char SpeechKitApplicationKey[] = {
         num = @(index);
     }
     else if ( fieldEnum == CPTScatterPlotFieldY ) {
-        num = @(rand() % (0 - 100) + 0);
+        if (index % 5 == 1) {
+            num = @(rand() % (50 - 52) + 50);
+        } else if (index % 5 == 2) {
+            num = @(rand() % (40 - 45) + 40);
+        } else if (index % 5 == 3) {
+            num = @(rand() % (80 - 100) + 80);
+        } else if (index % 5 == 4) {
+            num = @(rand() % (40 - 45) + 40);
+        } else {
+            num = @(rand() % (50 - 52) + 50);
+        }
     }
     
     return num;
@@ -296,6 +309,26 @@ const unsigned char SpeechKitApplicationKey[] = {
         self.symptomsTextView.text = [results firstResult];
         self.symptomsTextView.textAlignment = NSTextAlignmentCenter;
         self.symptomsTextView.font = [UIFont fontWithName:@"Avenir-Light" size:11.0f];
+        
+        [self.statusBarNotification displayNotificationWithMessage:@"🚀 Diagnosing 🚀" completion:nil];
+        [self setWaitingMode];
+        
+        // Dummy sensor data
+        if (!self.sensorData) {
+            self.sensorData = [[NSMutableDictionary alloc] init];
+            [self.sensorData setObject:@"99" forKey:@"temp"];
+            [self.sensorData setObject:@"21" forKey:@"resprate"];
+            [self.sensorData setObject:@"120" forKey:@"heartrate"];
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [[CDSensorOperationController getDiagnosisWithSensorData:self.sensorData andSymptoms:[results firstResult]] continueWithSuccessBlock:^id(BFTask *task) {
+                [self.statusBarNotification dismissNotification];
+                [self performSegueWithIdentifier:@"MainToDiagnosis" sender:self];
+                [self setNormalMode];
+                return nil;
+            }];
+        });
     }
 }
 
@@ -322,18 +355,7 @@ const unsigned char SpeechKitApplicationKey[] = {
         
         if (self.voiceSearch) {
             [self.voiceSearch stopRecording];
-            //[self.voiceSearch cancel];
         }
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self.statusBarNotification displayNotificationWithMessage:@"🚀 Diagnosing 🚀" completion:nil];
-        });
-        [self setWaitingMode];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self.statusBarNotification dismissNotification];
-            [self performSegueWithIdentifier:@"MainToDiagnosis" sender:self];
-            [self setNormalMode];
-        });
     }
 }
 
