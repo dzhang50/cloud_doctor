@@ -9,6 +9,8 @@
 #import "CDMainViewController.h"
 #import "CDMainViewController+Animations.h"
 
+#import "CDDeliveryOperationController.h"
+
 #import "AppDelegate.h"
 
 #import <Parse/Parse.h>
@@ -55,6 +57,11 @@ const unsigned char SpeechKitApplicationKey[] = {
     self.CDYellow = [UIColor colorWithRed:255.0/255.0
                                     green:211.0/255.0
                                      blue:0.0
+                                    alpha:1.0];
+    
+    self.CDOrange = [UIColor colorWithRed:255.0/255.0
+                                    green:131.0/255.0
+                                     blue:0.0/255.0
                                     alpha:1.0];
     
     if (!self.halo) {
@@ -107,6 +114,12 @@ const unsigned char SpeechKitApplicationKey[] = {
     if (appDelegate.inDeliveryMode) {
         [self.statusBarNotification displayNotificationWithMessage:@"Order Placed! :)" forDuration:2.0f];
         [self setDeliveryMode];
+        
+        [NSTimer scheduledTimerWithTimeInterval:2.5
+                                         target:self
+                                       selector:@selector(checkDeliveryStatus)
+                                       userInfo:nil
+                                        repeats:YES];
     }
     
 }
@@ -133,6 +146,15 @@ const unsigned char SpeechKitApplicationKey[] = {
 {
     self.inAlertMode = YES;
     [self setAlertMode];
+}
+
+#pragma mark - Delivery
+
+- (void)checkDeliveryStatus
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+
+    [CDDeliveryOperationController getDeliveryUpdate:appDelegate.deliveryID];
 }
 
 #pragma mark - CorePlot

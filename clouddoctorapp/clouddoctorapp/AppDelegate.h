@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property BOOL inDeliveryMode;
+@property NSString *deliveryID;
 
 - (void)setupSpeechKitConnection;
 

@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Cloud Doctor. All rights reserved.
 //
 
-#import "DeliveryOperationController.h"
+#import "CDDeliveryOperationController.h"
 #import "AFNetworking/AFNetworking.h"
 
 #import "AppDelegate.h"
 
-@implementation DeliveryOperationController
+@implementation CDDeliveryOperationController
 
 NSString * const UPENN_ADDRESS = @"3330 Walnut Street, Philadelphia, PA 19104";
 NSString * const CVS_ADDRESS = @"3401 Walnut Street Philadelphia, PA 19104";
@@ -66,8 +66,11 @@ NSString * const POSTMATES_API_CUSTOMER_ID = @"cus_J_LfHamn2SN7nV";
     
     [manager POST:requestURI parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        NSDictionary *response = (NSDictionary *) responseObject;
+        
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         appDelegate.inDeliveryMode = YES;
+        appDelegate.deliveryID = [response objectForKey:@"id"];
         [scheduleDeliveryPromise setResult:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);

@@ -94,10 +94,11 @@
         [self.oxygenLabel setAlpha:0];
         [self.carbonIcon setAlpha:0];
         [self.carbonDioxideLabel setAlpha:0];
+        self.halo.backgroundColor = self.CDOrange.CGColor;
     }];
     
     [UIView transitionWithView:self.statusLabel duration:0.25f options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        self.statusLabel.text = @"Postmates";
+        self.statusLabel.text = @"pending";
     } completion:nil];
 }
 

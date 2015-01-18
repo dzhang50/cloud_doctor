@@ -48,6 +48,7 @@
 @property UIColor *CDGreen;
 @property UIColor *CDBlue;
 @property UIColor *CDYellow;
+@property UIColor *CDOrange;
 
 - (IBAction)handleSubmitSymptoms:(id)sender;
 

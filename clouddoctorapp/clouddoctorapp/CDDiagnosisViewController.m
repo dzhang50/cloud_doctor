@@ -9,7 +9,7 @@
 #import "CDDiagnosisViewController.h"
 #import "CDDiagnosisViewController+Animations.h"
 
-#import "DeliveryOperationController.h"
+#import "CDDeliveryOperationController.h"
 #import "CWStatusBarNotification.h"
 
 @interface CDDiagnosisViewController ()
@@ -35,7 +35,7 @@
                                                                              blue:32.0/255.0
                                                                             alpha:1.0];
     
-    [[DeliveryOperationController getDeliveryQuote] continueWithSuccessBlock:^id(BFTask *task) {
+    [[CDDeliveryOperationController getDeliveryQuote] continueWithSuccessBlock:^id(BFTask *task) {
         NSDictionary *response = (NSDictionary *) task.result;
         NSString *deliveryFee = [NSString stringWithFormat:@"%@", [response objectForKey:@"fee"]];
         NSString *deliveryTime = [NSString stringWithFormat:@"%@", [response objectForKey:@"duration"]];
@@ -73,7 +73,7 @@
     [self.statusBarNotification displayNotificationWithMessage:@"Ordering Medication via Postmates!" forDuration:2.0f];
     
     if (self.deliveryQuoteID) {
-        [[DeliveryOperationController scheduleDelivery:self.deliveryQuoteID withNotes:@"Tylenol"] continueWithSuccessBlock:^id(BFTask *task) {
+        [[CDDeliveryOperationController scheduleDelivery:self.deliveryQuoteID withNotes:@"Tylenol"] continueWithSuccessBlock:^id(BFTask *task) {
             [self.navigationController popViewControllerAnimated:YES];
             return nil;
         }];
