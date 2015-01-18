@@ -74,7 +74,6 @@
     
     if (self.deliveryQuoteID) {
         [[DeliveryOperationController scheduleDelivery:self.deliveryQuoteID withNotes:@"Tylenol"] continueWithSuccessBlock:^id(BFTask *task) {
-            [self.statusBarNotification displayNotificationWithMessage:@"Order Placed! :)" forDuration:2.0f];
             [self.navigationController popViewControllerAnimated:YES];
             return nil;
         }];

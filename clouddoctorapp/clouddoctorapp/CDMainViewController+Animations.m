@@ -32,6 +32,8 @@
     [UIView transitionWithView:self.statusLabel duration:0.25f options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
         self.statusLabel.text = @"all vitals normal";
     } completion:nil];
+    
+    self.symptomsTextView.text = @"";
 }
 
 - (void)setAlertMode
@@ -76,6 +78,26 @@
     
     [UIView transitionWithView:self.submitButton.titleLabel duration:0.25f options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
         [self.submitButton setTitle:@"" forState:UIControlStateNormal];
+    } completion:nil];
+}
+
+- (void)setDeliveryMode
+{
+    [UIView animateWithDuration:0.5f animations:^{
+        [self.hearbeatIcon setAlpha:0];
+        [self.hearbeatLabel setAlpha:0];
+        [self.temperatureIcon setAlpha:0];
+        [self.temperatureLabel setAlpha:0];
+        [self.ecgIcon setAlpha:0];
+        [self.ecgGraphHostingView setAlpha:0];
+        [self.oxygenIcon setAlpha:0];
+        [self.oxygenLabel setAlpha:0];
+        [self.carbonIcon setAlpha:0];
+        [self.carbonDioxideLabel setAlpha:0];
+    }];
+    
+    [UIView transitionWithView:self.statusLabel duration:0.25f options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.statusLabel.text = @"Postmates";
     } completion:nil];
 }
 

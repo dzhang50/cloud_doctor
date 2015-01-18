@@ -9,6 +9,8 @@
 #import "DeliveryOperationController.h"
 #import "AFNetworking/AFNetworking.h"
 
+#import "AppDelegate.h"
+
 @implementation DeliveryOperationController
 
 NSString * const UPENN_ADDRESS = @"3330 Walnut Street, Philadelphia, PA 19104";
@@ -64,6 +66,8 @@ NSString * const POSTMATES_API_CUSTOMER_ID = @"cus_J_LfHamn2SN7nV";
     
     [manager POST:requestURI parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        appDelegate.inDeliveryMode = YES;
         [scheduleDeliveryPromise setResult:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);

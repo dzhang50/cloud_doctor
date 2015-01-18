@@ -26,7 +26,7 @@
                                 <rect key="frame" x="74" y="147" width="60" height="60"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" image="carbon_monoxide" translatesAutoresizingMaskIntoConstraints="NO" id="2sy-5Z-CXv" userLabel="Carbon Monoxide Icon">
-                                <rect key="frame" x="184" y="147" width="60" height="60"/>
+                                <rect key="frame" x="184" y="150" width="60" height="60"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="- bpm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ms0-Pg-fXL" userLabel="Heartbeat Label">
                                 <rect key="frame" x="17" y="99" width="83" height="21"/>
@@ -104,13 +104,18 @@
                     <navigationItem key="navigationItem" title="Dr.Cloud" id="yaW-kW-g22"/>
                     <connections>
                         <outlet property="carbonDioxideLabel" destination="pm1-Pe-oyq" id="Pbq-2Y-bnf"/>
+                        <outlet property="carbonIcon" destination="2sy-5Z-CXv" id="n95-9M-vQ2"/>
                         <outlet property="ecgGraphHostingView" destination="Bin-aF-766" id="OKM-RE-Rwz"/>
+                        <outlet property="ecgIcon" destination="tNX-lg-jzz" id="nRr-48-2G4"/>
+                        <outlet property="hearbeatIcon" destination="NQ9-u4-apu" id="UAj-ol-DTh"/>
                         <outlet property="hearbeatLabel" destination="ms0-Pg-fXL" id="w6T-LE-GNQ"/>
                         <outlet property="microphoneImageView" destination="g6F-K3-4fN" id="7jN-Va-ccj"/>
+                        <outlet property="oxygenIcon" destination="h6s-ah-Y72" id="kAo-U3-g8h"/>
                         <outlet property="oxygenLabel" destination="hhi-db-6pO" id="Ew3-uj-5At"/>
                         <outlet property="statusLabel" destination="wqQ-Aw-l7s" id="0M3-NB-0ZG"/>
                         <outlet property="submitButton" destination="xWc-H1-OOs" id="VW4-yk-XpC"/>
                         <outlet property="symptomsTextView" destination="BFX-pY-3LV" id="lS8-aD-fQN"/>
+                        <outlet property="temperatureIcon" destination="e2Q-9C-x1o" id="G2H-Tb-oAH"/>
                         <outlet property="temperatureLabel" destination="Jgt-aJ-FDV" id="8C8-a2-qcE"/>
                         <outlet property="uploadImageView" destination="23H-AM-zyQ" id="FCf-ek-HaD"/>
                         <segue destination="t69-wO-ewW" kind="push" identifier="MainToDiagnosis" id="xYi-8N-HZT"/>

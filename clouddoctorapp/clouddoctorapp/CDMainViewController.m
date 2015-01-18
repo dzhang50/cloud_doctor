@@ -57,6 +57,17 @@ const unsigned char SpeechKitApplicationKey[] = {
                                      blue:0.0
                                     alpha:1.0];
     
+    if (!self.halo) {
+        self.halo = [PulsingHaloLayer layer];
+    }
+    
+    self.halo.position = self.statusLabel.center;
+    self.halo.radius = 125.0f;
+    self.halo.animationDuration = 1.5f;
+    self.halo.pulseInterval = -0.5f;
+    self.halo.backgroundColor = self.CDGreen.CGColor;
+    [self.view.layer addSublayer:self.halo];
+    
     self.bleShield = [[BLE alloc] init];
     [self.bleShield controlSetup];
     self.bleShield.delegate = self;
@@ -91,16 +102,13 @@ const unsigned char SpeechKitApplicationKey[] = {
 {
     [super viewDidAppear:animated];
     
-    if (!self.halo) {
-        self.halo = [PulsingHaloLayer layer];
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+
+    if (appDelegate.inDeliveryMode) {
+        [self.statusBarNotification displayNotificationWithMessage:@"Order Placed! :)" forDuration:2.0f];
+        [self setDeliveryMode];
     }
-        
-    self.halo.position = self.statusLabel.center;
-    self.halo.radius = 125.0f;
-    self.halo.animationDuration = 1.5f;
-    self.halo.pulseInterval = -0.5f;
-    self.halo.backgroundColor = self.CDGreen.CGColor;
-    [self.view.layer addSublayer:self.halo];
+    
 }
 
 - (void)didReceiveMemoryWarning

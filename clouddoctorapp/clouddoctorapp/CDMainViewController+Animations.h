@@ -17,5 +17,6 @@
 - (void)setAlertMode;
 - (void)setListeningMode;
 - (void)setWaitingMode;
+- (void)setDeliveryMode;
 
 @end
