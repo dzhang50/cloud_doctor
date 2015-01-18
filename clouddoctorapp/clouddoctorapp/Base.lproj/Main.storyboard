@@ -92,6 +92,12 @@
                                 <rect key="frame" x="226" y="68" width="78" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFX-pY-3LV">
+                                <rect key="frame" x="17" y="426" width="287" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="11"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -104,6 +110,7 @@
                         <outlet property="oxygenLabel" destination="hhi-db-6pO" id="Ew3-uj-5At"/>
                         <outlet property="statusLabel" destination="wqQ-Aw-l7s" id="0M3-NB-0ZG"/>
                         <outlet property="submitButton" destination="xWc-H1-OOs" id="VW4-yk-XpC"/>
+                        <outlet property="symptomsTextView" destination="BFX-pY-3LV" id="lS8-aD-fQN"/>
                         <outlet property="temperatureLabel" destination="Jgt-aJ-FDV" id="8C8-a2-qcE"/>
                         <outlet property="uploadImageView" destination="23H-AM-zyQ" id="FCf-ek-HaD"/>
                         <segue destination="t69-wO-ewW" kind="push" identifier="MainToDiagnosis" id="xYi-8N-HZT"/>

@@ -12,5 +12,8 @@
 @interface DeliveryOperationController : NSObject
 
 + (BFTask *)getDeliveryQuote;
++ (BFTask *)scheduleDelivery:(NSString *)quoteID
+                   withNotes:(NSString *)notes;
++ (BFTask *)getDeliveryUpdate:(NSString *)deliveryID;
 
 @end

@@ -29,6 +29,7 @@
 		66EDE7971A6B0B1E001519FF /* earcon_done_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 66EDE7941A6B0B1E001519FF /* earcon_done_listening.wav */; };
 		66EDE7981A6B0B1E001519FF /* earcon_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 66EDE7951A6B0B1E001519FF /* earcon_listening.wav */; };
 		66EDE79B1A6B12CE001519FF /* DeliveryOperationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE79A1A6B12CE001519FF /* DeliveryOperationController.m */; };
+		66EDE79E1A6B456B001519FF /* CDDiagnosisViewController+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE79D1A6B456B001519FF /* CDDiagnosisViewController+Animations.m */; };
 		A227E8B14577ECDB9FAF0E80 /* libPods-clouddoctorapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A119943669CF35F3E18000 /* libPods-clouddoctorapp.a */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,8 @@
 		66EDE7951A6B0B1E001519FF /* earcon_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earcon_listening.wav; path = ../../../../../Downloads/DragonMobileSDK_1.4.12/DragonMobileRecognizer/earcon_listening.wav; sourceTree = "<group>"; };
 		66EDE7991A6B12CE001519FF /* DeliveryOperationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryOperationController.h; sourceTree = "<group>"; };
 		66EDE79A1A6B12CE001519FF /* DeliveryOperationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryOperationController.m; sourceTree = "<group>"; };
+		66EDE79C1A6B456B001519FF /* CDDiagnosisViewController+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDDiagnosisViewController+Animations.h"; sourceTree = "<group>"; };
+		66EDE79D1A6B456B001519FF /* CDDiagnosisViewController+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDDiagnosisViewController+Animations.m"; sourceTree = "<group>"; };
 		8DABAFEBEEA633B1DB6A5725 /* Pods-clouddoctorapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.release.xcconfig"; sourceTree = "<group>"; };
 		CB57A61504F2989588D77FB5 /* Pods-clouddoctorapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clouddoctorapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-clouddoctorapp/Pods-clouddoctorapp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -198,6 +201,8 @@
 				66EDE7471A6A3625001519FF /* CDMainViewController+Animations.m */,
 				66EDE7851A6A886D001519FF /* CDDiagnosisViewController.h */,
 				66EDE7861A6A886D001519FF /* CDDiagnosisViewController.m */,
+				66EDE79C1A6B456B001519FF /* CDDiagnosisViewController+Animations.h */,
+				66EDE79D1A6B456B001519FF /* CDDiagnosisViewController+Animations.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				6623FCEF1A6959E7009FBB8E /* main.m in Sources */,
 				66EDE7511A6A490A001519FF /* BLE.m in Sources */,
 				66EDE74B1A6A36CC001519FF /* SensorOperationController.m in Sources */,
+				66EDE79E1A6B456B001519FF /* CDDiagnosisViewController+Animations.m in Sources */,
 				66EDE7481A6A3625001519FF /* CDMainViewController+Animations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

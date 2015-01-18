@@ -32,12 +32,67 @@ NSString * const POSTMATES_API_CUSTOMER_ID = @"cus_J_LfHamn2SN7nV";
     NSDictionary *params = @{@"pickup_address": CVS_ADDRESS, @"dropoff_address": UPENN_ADDRESS};
     [manager POST:requestURI parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        [getDeliveryQuotePromise setResult:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        [getDeliveryQuotePromise setError:error];
     }];
     
     return getDeliveryQuotePromise.task;
 }
+
++ (BFTask *)scheduleDelivery:(NSString *)quoteID
+                   withNotes:(NSString *)notes
+{
+    BFTaskCompletionSource *scheduleDeliveryPromise = [BFTaskCompletionSource taskCompletionSource];
     
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager setRequestSerializer:[AFHTTPRequestSerializer serializer]];
+    [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:POSTMATES_API_DEV_KEY password:@""];
+    
+    NSString *requestURI = [NSString stringWithFormat:@"%@customers/%@/deliveries", POSTMATES_API_BASE_URL, POSTMATES_API_CUSTOMER_ID];
+    NSDictionary *params = @{@"manifest": CVS_ADDRESS,
+                             @"pickup_name": @"CVS Pharmacy",
+                             @"pickup_address": CVS_ADDRESS,
+                             @"pickup_phone_number": @"555-555-5555",
+                             @"pickup_notes": notes,
+                             @"dropoff_name": @"Peter Kim",
+                             @"dropoff_address": UPENN_ADDRESS,
+                             @"dropoff_phone_number": @"510-557-8964",
+                             @"quote_id": quoteID
+                             };
+    
+    [manager POST:requestURI parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        [scheduleDeliveryPromise setResult:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [scheduleDeliveryPromise setError:error];
+    }];
+
+    return scheduleDeliveryPromise.task;
+}
+
++ (BFTask *)getDeliveryUpdate:(NSString *)deliveryID
+{
+    BFTaskCompletionSource *getDeliveryUpdatePromise = [BFTaskCompletionSource taskCompletionSource];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager setRequestSerializer:[AFHTTPRequestSerializer serializer]];
+    [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:POSTMATES_API_DEV_KEY password:@""];
+    
+    NSString *requestURI = [NSString stringWithFormat:@"%@customers/%@/deliveries/%@", POSTMATES_API_BASE_URL, POSTMATES_API_CUSTOMER_ID, deliveryID];
+    
+    [manager GET:requestURI parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        [getDeliveryUpdatePromise setResult:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [getDeliveryUpdatePromise setError:error];
+    }];
+    
+    return getDeliveryUpdatePromise.task;
+}
+
 
 @end

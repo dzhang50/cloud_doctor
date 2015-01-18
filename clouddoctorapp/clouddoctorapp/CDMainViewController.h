@@ -35,6 +35,8 @@
 
 @property (weak, nonatomic) IBOutlet CPTGraphHostingView *ecgGraphHostingView;
 
+@property (weak, nonatomic) IBOutlet UITextView *symptomsTextView;
+
 @property (nonatomic, weak) PulsingHaloLayer *halo;
 
 @property UIColor *CDRed;

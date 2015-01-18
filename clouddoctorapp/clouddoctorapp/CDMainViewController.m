@@ -236,7 +236,9 @@ const unsigned char SpeechKitApplicationKey[] = {
     if (numOfResults > 0) {
         // update the text of text field with best result from SpeechKit
         NSLog(@"%@", [results results]);
-
+        self.symptomsTextView.text = [results firstResult];
+        self.symptomsTextView.textAlignment = NSTextAlignmentCenter;
+        self.symptomsTextView.font = [UIFont fontWithName:@"Avenir-Light" size:11.0f];
     }
 }
 
